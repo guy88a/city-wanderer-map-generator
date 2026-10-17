@@ -1,1 +1,11 @@
-{"name":"city-wonderer-map-tester","private":true,"type":"module","scripts":{"start":"node server.mjs","check":"node --check app.js && node --check config.js && node --check geometry.js && node --check server.mjs"}}
+{
+  "name": "city-wonderer-map-tester",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check app.js && node --check model.js && node --check catalog.js && node --check config.js && node --check geometry.js && node --check server.mjs",
+    "test": "node --test tests/model.test.js"
+  }
+}

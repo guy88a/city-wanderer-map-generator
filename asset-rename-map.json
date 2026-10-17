@@ -1,0 +1,1516 @@
+{
+  "status": "implemented",
+  "source_archive": "City_Wonderer_Map_Tester_current.zip",
+  "source_sha256": "24a2172c2520f55110753b35a69a063f1933eef6a275ee6ae6d8e5ed0584da13",
+  "inventory": {
+    "registered_assets": 41,
+    "physical_png_files": 53,
+    "unregistered_crosswalk_files": 12,
+    "proposed_palette_items": 47
+  },
+  "coordinate_convention": {
+    "nw": "screen top-left edge; preceding map column",
+    "ne": "screen top-right edge; preceding map row",
+    "se": "screen bottom-right edge; following map column",
+    "sw": "screen bottom-left edge; following map row",
+    "axes": "road travel axes, not pedestrian travel axes; no relation to game-world north"
+  },
+  "legacy_keys": {
+    "G": "grass",
+    "P": "ground_pavement",
+    "R": "road",
+    "RB": "road_2lane_straight_ne_sw",
+    "RCA": "road_2lane_corner_nw_ne",
+    "RCB": "road_2lane_corner_ne_se",
+    "RCC": "road_2lane_corner_se_sw",
+    "RCD": "road_2lane_corner_nw_sw",
+    "RC": "road_2lane_cross",
+    "RDEA": "road_2lane_dead_end_open_nw",
+    "RDEB": "road_2lane_dead_end_open_ne",
+    "RDEC": "road_2lane_dead_end_open_se",
+    "RDED": "road_2lane_dead_end_open_sw",
+    "RTA": "road_2lane_t_branch_ne",
+    "RTB": "road_2lane_t_branch_se",
+    "RTC": "road_2lane_t_branch_sw",
+    "RTD": "road_2lane_t_branch_nw",
+    "RL": "road_4lane_straight_nw_se_sidewalk_sw",
+    "RR": "road_4lane_straight_nw_se_sidewalk_ne",
+    "RLB": "road_4lane_straight_ne_sw_sidewalk_nw",
+    "RRB": "road_4lane_straight_ne_sw_sidewalk_se",
+    "MTEA": "road_4lane_to_2lane_t_branch_ne_entry",
+    "MTFA": "road_4lane_to_2lane_t_branch_ne_far",
+    "MTEB": "road_4lane_to_2lane_t_branch_nw_entry",
+    "MTFB": "road_4lane_to_2lane_t_branch_nw_far",
+    "MTEC": "road_4lane_to_2lane_t_branch_se_entry",
+    "MTFC": "road_4lane_to_2lane_t_branch_se_far",
+    "MTED": "road_4lane_to_2lane_t_branch_sw_entry",
+    "MTFD": "road_4lane_to_2lane_t_branch_sw_far",
+    "MCTEA": "road_4lane_junction_entry_corner_ne_se",
+    "MCTEB": "road_4lane_junction_entry_corner_nw_ne",
+    "MCTEC": "road_4lane_junction_entry_corner_se_sw",
+    "MCTED": "road_4lane_junction_entry_corner_nw_sw",
+    "MCTFA1": "road_4lane_junction_far_sidewalk_sw_divider_se",
+    "MCTFA2": "road_4lane_junction_far_sidewalk_sw_divider_nw",
+    "MCTFB1": "road_4lane_junction_far_sidewalk_se_divider_ne",
+    "MCTFB2": "road_4lane_junction_far_sidewalk_se_divider_sw",
+    "MCTFC1": "road_4lane_junction_far_sidewalk_nw_divider_ne",
+    "MCTFC2": "road_4lane_junction_far_sidewalk_nw_divider_sw",
+    "MCTFD1": "road_4lane_junction_far_sidewalk_ne_divider_se",
+    "MCTFD2": "road_4lane_junction_far_sidewalk_ne_divider_nw"
+  },
+  "assets": [
+    {
+      "key": "grass",
+      "label": "Grass",
+      "category": "ground/terrain",
+      "layer": "ground",
+      "file": "ground/terrain/grass.png",
+      "legacy_keys": [
+        "G"
+      ]
+    },
+    {
+      "key": "ground_pavement",
+      "label": "Concrete pavement",
+      "category": "ground/terrain",
+      "layer": "ground",
+      "file": "ground/terrain/ground_pavement.png",
+      "legacy_keys": [
+        "P"
+      ]
+    },
+    {
+      "key": "road",
+      "label": "2-lane straight · NW–SE",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road.png",
+      "axis": "nw_se",
+      "open_edges": [
+        "nw",
+        "se"
+      ],
+      "legacy_keys": [
+        "R"
+      ]
+    },
+    {
+      "key": "road_2lane_straight_ne_sw",
+      "label": "2-lane straight · NE–SW",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_straight_ne_sw.png",
+      "axis": "ne_sw",
+      "open_edges": [
+        "ne",
+        "sw"
+      ],
+      "legacy_keys": [
+        "RB"
+      ]
+    },
+    {
+      "key": "road_2lane_corner_nw_ne",
+      "label": "2-lane corner · NW + NE",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_corner_nw_ne.png",
+      "open_edges": [
+        "nw",
+        "ne"
+      ],
+      "legacy_keys": [
+        "RCA"
+      ]
+    },
+    {
+      "key": "road_2lane_corner_ne_se",
+      "label": "2-lane corner · NE + SE",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_corner_ne_se.png",
+      "open_edges": [
+        "ne",
+        "se"
+      ],
+      "legacy_keys": [
+        "RCB"
+      ]
+    },
+    {
+      "key": "road_2lane_corner_se_sw",
+      "label": "2-lane corner · SE + SW",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_corner_se_sw.png",
+      "open_edges": [
+        "se",
+        "sw"
+      ],
+      "legacy_keys": [
+        "RCC"
+      ]
+    },
+    {
+      "key": "road_2lane_corner_nw_sw",
+      "label": "2-lane corner · NW + SW",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_corner_nw_sw.png",
+      "open_edges": [
+        "nw",
+        "sw"
+      ],
+      "legacy_keys": [
+        "RCD"
+      ]
+    },
+    {
+      "key": "road_2lane_cross",
+      "label": "2-lane four-way intersection",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_cross.png",
+      "open_edges": [
+        "nw",
+        "ne",
+        "se",
+        "sw"
+      ],
+      "legacy_keys": [
+        "RC"
+      ]
+    },
+    {
+      "key": "road_2lane_dead_end_open_nw",
+      "label": "2-lane dead end · entrance NW",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_dead_end_open_nw.png",
+      "open_edges": [
+        "nw"
+      ],
+      "legacy_keys": [
+        "RDEA"
+      ]
+    },
+    {
+      "key": "road_2lane_dead_end_open_ne",
+      "label": "2-lane dead end · entrance NE",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_dead_end_open_ne.png",
+      "open_edges": [
+        "ne"
+      ],
+      "legacy_keys": [
+        "RDEB"
+      ]
+    },
+    {
+      "key": "road_2lane_dead_end_open_se",
+      "label": "2-lane dead end · entrance SE",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_dead_end_open_se.png",
+      "open_edges": [
+        "se"
+      ],
+      "legacy_keys": [
+        "RDEC"
+      ]
+    },
+    {
+      "key": "road_2lane_dead_end_open_sw",
+      "label": "2-lane dead end · entrance SW",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_dead_end_open_sw.png",
+      "open_edges": [
+        "sw"
+      ],
+      "legacy_keys": [
+        "RDED"
+      ]
+    },
+    {
+      "key": "road_2lane_t_branch_ne",
+      "label": "2-lane T · branch NE",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_t_branch_ne.png",
+      "branch": "ne",
+      "open_edges": [
+        "nw",
+        "ne",
+        "se"
+      ],
+      "legacy_keys": [
+        "RTA"
+      ]
+    },
+    {
+      "key": "road_2lane_t_branch_se",
+      "label": "2-lane T · branch SE",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_t_branch_se.png",
+      "branch": "se",
+      "open_edges": [
+        "ne",
+        "se",
+        "sw"
+      ],
+      "legacy_keys": [
+        "RTB"
+      ]
+    },
+    {
+      "key": "road_2lane_t_branch_sw",
+      "label": "2-lane T · branch SW",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_t_branch_sw.png",
+      "branch": "sw",
+      "open_edges": [
+        "nw",
+        "se",
+        "sw"
+      ],
+      "legacy_keys": [
+        "RTC"
+      ]
+    },
+    {
+      "key": "road_2lane_t_branch_nw",
+      "label": "2-lane T · branch NW",
+      "category": "ground/roads/2lane",
+      "layer": "ground",
+      "file": "ground/roads/2lane/road_2lane_t_branch_nw.png",
+      "branch": "nw",
+      "open_edges": [
+        "nw",
+        "ne",
+        "sw"
+      ],
+      "legacy_keys": [
+        "RTD"
+      ]
+    },
+    {
+      "key": "road_4lane_straight_nw_se_sidewalk_sw",
+      "label": "4-lane straight half · NW–SE · sidewalk SW",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_straight_nw_se_sidewalk_sw.png",
+      "axis": "nw_se",
+      "sidewalk": "sw",
+      "legacy_keys": [
+        "RL"
+      ]
+    },
+    {
+      "key": "road_4lane_straight_nw_se_sidewalk_ne",
+      "label": "4-lane straight half · NW–SE · sidewalk NE",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_straight_nw_se_sidewalk_ne.png",
+      "axis": "nw_se",
+      "sidewalk": "ne",
+      "legacy_keys": [
+        "RR"
+      ]
+    },
+    {
+      "key": "road_4lane_straight_ne_sw_sidewalk_nw",
+      "label": "4-lane straight half · NE–SW · sidewalk NW",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_straight_ne_sw_sidewalk_nw.png",
+      "axis": "ne_sw",
+      "sidewalk": "nw",
+      "legacy_keys": [
+        "RLB"
+      ]
+    },
+    {
+      "key": "road_4lane_straight_ne_sw_sidewalk_se",
+      "label": "4-lane straight half · NE–SW · sidewalk SE",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_straight_ne_sw_sidewalk_se.png",
+      "axis": "ne_sw",
+      "sidewalk": "se",
+      "legacy_keys": [
+        "RRB"
+      ]
+    },
+    {
+      "key": "road_4lane_to_2lane_t_branch_ne_entry",
+      "label": "4↔2-lane T · branch NE · entry half",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_ne_entry.png",
+      "branch": "ne",
+      "part": "entry",
+      "legacy_keys": [
+        "MTEA"
+      ]
+    },
+    {
+      "key": "road_4lane_to_2lane_t_branch_ne_far",
+      "label": "4↔2-lane T · branch NE · far half",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_ne_far.png",
+      "branch": "ne",
+      "part": "far",
+      "sidewalk": "sw",
+      "legacy_keys": [
+        "MTFA"
+      ]
+    },
+    {
+      "key": "road_4lane_to_2lane_t_branch_nw_entry",
+      "label": "4↔2-lane T · branch NW · entry half",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_nw_entry.png",
+      "branch": "nw",
+      "part": "entry",
+      "legacy_keys": [
+        "MTEB"
+      ]
+    },
+    {
+      "key": "road_4lane_to_2lane_t_branch_nw_far",
+      "label": "4↔2-lane T · branch NW · far half",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_nw_far.png",
+      "branch": "nw",
+      "part": "far",
+      "sidewalk": "se",
+      "legacy_keys": [
+        "MTFB"
+      ]
+    },
+    {
+      "key": "road_4lane_to_2lane_t_branch_se_entry",
+      "label": "4↔2-lane T · branch SE · entry half",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_se_entry.png",
+      "branch": "se",
+      "part": "entry",
+      "legacy_keys": [
+        "MTEC"
+      ]
+    },
+    {
+      "key": "road_4lane_to_2lane_t_branch_se_far",
+      "label": "4↔2-lane T · branch SE · far half",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_se_far.png",
+      "branch": "se",
+      "part": "far",
+      "sidewalk": "nw",
+      "legacy_keys": [
+        "MTFC"
+      ]
+    },
+    {
+      "key": "road_4lane_to_2lane_t_branch_sw_entry",
+      "label": "4↔2-lane T · branch SW · entry half",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_sw_entry.png",
+      "branch": "sw",
+      "part": "entry",
+      "legacy_keys": [
+        "MTED"
+      ]
+    },
+    {
+      "key": "road_4lane_to_2lane_t_branch_sw_far",
+      "label": "4↔2-lane T · branch SW · far half",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_sw_far.png",
+      "branch": "sw",
+      "part": "far",
+      "sidewalk": "ne",
+      "legacy_keys": [
+        "MTFD"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_entry_corner_ne_se",
+      "label": "4-lane junction · entry · corner NE/SE",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_entry_corner_ne_se.png",
+      "part": "entry_corner",
+      "corner_edges": [
+        "ne",
+        "se"
+      ],
+      "reused_by": [
+        "4lane_t",
+        "4lane_cross"
+      ],
+      "legacy_keys": [
+        "MCTEA"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_entry_corner_nw_ne",
+      "label": "4-lane junction · entry · corner NW/NE",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_entry_corner_nw_ne.png",
+      "part": "entry_corner",
+      "corner_edges": [
+        "nw",
+        "ne"
+      ],
+      "reused_by": [
+        "4lane_t",
+        "4lane_cross"
+      ],
+      "legacy_keys": [
+        "MCTEB"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_entry_corner_se_sw",
+      "label": "4-lane junction · entry · corner SE/SW",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_entry_corner_se_sw.png",
+      "part": "entry_corner",
+      "corner_edges": [
+        "se",
+        "sw"
+      ],
+      "reused_by": [
+        "4lane_t",
+        "4lane_cross"
+      ],
+      "legacy_keys": [
+        "MCTEC"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_entry_corner_nw_sw",
+      "label": "4-lane junction · entry · corner NW/SW",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_entry_corner_nw_sw.png",
+      "part": "entry_corner",
+      "corner_edges": [
+        "nw",
+        "sw"
+      ],
+      "reused_by": [
+        "4lane_t",
+        "4lane_cross"
+      ],
+      "legacy_keys": [
+        "MCTED"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_far_sidewalk_sw_divider_se",
+      "label": "4-lane junction · far · sidewalk SW · divider SE",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_sw_divider_se.png",
+      "part": "far",
+      "sidewalk": "sw",
+      "divider_stub": "se",
+      "legacy_keys": [
+        "MCTFA1"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_far_sidewalk_sw_divider_nw",
+      "label": "4-lane junction · far · sidewalk SW · divider NW",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_sw_divider_nw.png",
+      "part": "far",
+      "sidewalk": "sw",
+      "divider_stub": "nw",
+      "legacy_keys": [
+        "MCTFA2"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_far_sidewalk_se_divider_ne",
+      "label": "4-lane junction · far · sidewalk SE · divider NE",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_se_divider_ne.png",
+      "part": "far",
+      "sidewalk": "se",
+      "divider_stub": "ne",
+      "legacy_keys": [
+        "MCTFB1"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_far_sidewalk_se_divider_sw",
+      "label": "4-lane junction · far · sidewalk SE · divider SW",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_se_divider_sw.png",
+      "part": "far",
+      "sidewalk": "se",
+      "divider_stub": "sw",
+      "legacy_keys": [
+        "MCTFB2"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_far_sidewalk_nw_divider_ne",
+      "label": "4-lane junction · far · sidewalk NW · divider NE",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_nw_divider_ne.png",
+      "part": "far",
+      "sidewalk": "nw",
+      "divider_stub": "ne",
+      "legacy_keys": [
+        "MCTFC1"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_far_sidewalk_nw_divider_sw",
+      "label": "4-lane junction · far · sidewalk NW · divider SW",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_nw_divider_sw.png",
+      "part": "far",
+      "sidewalk": "nw",
+      "divider_stub": "sw",
+      "legacy_keys": [
+        "MCTFC2"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_far_sidewalk_ne_divider_se",
+      "label": "4-lane junction · far · sidewalk NE · divider SE",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_ne_divider_se.png",
+      "part": "far",
+      "sidewalk": "ne",
+      "divider_stub": "se",
+      "legacy_keys": [
+        "MCTFD1"
+      ]
+    },
+    {
+      "key": "road_4lane_junction_far_sidewalk_ne_divider_nw",
+      "label": "4-lane junction · far · sidewalk NE · divider NW",
+      "category": "ground/roads/4lane",
+      "layer": "ground",
+      "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_ne_divider_nw.png",
+      "part": "far",
+      "sidewalk": "ne",
+      "divider_stub": "nw",
+      "legacy_keys": [
+        "MCTFD2"
+      ]
+    },
+    {
+      "key": "crosswalk_2lane_nw_se",
+      "label": "2-lane crossing · traffic NW–SE",
+      "category": "ground/markings/2lane",
+      "layer": "overlay",
+      "file": "ground/markings/2lane/crosswalk_2lane_nw_se.png",
+      "recommended_ground": "road",
+      "variants": {
+        "default_bleed": "ground/markings/2lane/crosswalk_2lane_nw_se.png",
+        "logical": "ground/markings/2lane/crosswalk_2lane_nw_se_logical.png"
+      }
+    },
+    {
+      "key": "crosswalk_2lane_ne_sw",
+      "label": "2-lane crossing · traffic NE–SW",
+      "category": "ground/markings/2lane",
+      "layer": "overlay",
+      "file": "ground/markings/2lane/crosswalk_2lane_ne_sw.png",
+      "recommended_ground": "road_2lane_straight_ne_sw",
+      "variants": {
+        "default_bleed": "ground/markings/2lane/crosswalk_2lane_ne_sw.png",
+        "logical": "ground/markings/2lane/crosswalk_2lane_ne_sw_logical.png"
+      }
+    },
+    {
+      "key": "crosswalk_4lane_nw_se_half_ne",
+      "label": "4-lane crossing half · traffic NW–SE · NE half",
+      "category": "ground/markings/4lane",
+      "layer": "overlay",
+      "file": "ground/markings/4lane/crosswalk_4lane_nw_se_half_ne.png",
+      "recommended_ground": "road_4lane_straight_nw_se_sidewalk_ne",
+      "variants": {
+        "default_bleed": "ground/markings/4lane/crosswalk_4lane_nw_se_half_ne.png",
+        "logical": "ground/markings/4lane/crosswalk_4lane_nw_se_half_ne_logical.png"
+      }
+    },
+    {
+      "key": "crosswalk_4lane_nw_se_half_sw",
+      "label": "4-lane crossing half · traffic NW–SE · SW half",
+      "category": "ground/markings/4lane",
+      "layer": "overlay",
+      "file": "ground/markings/4lane/crosswalk_4lane_nw_se_half_sw.png",
+      "recommended_ground": "road_4lane_straight_nw_se_sidewalk_sw",
+      "variants": {
+        "default_bleed": "ground/markings/4lane/crosswalk_4lane_nw_se_half_sw.png",
+        "logical": "ground/markings/4lane/crosswalk_4lane_nw_se_half_sw_logical.png"
+      }
+    },
+    {
+      "key": "crosswalk_4lane_ne_sw_half_nw",
+      "label": "4-lane crossing half · traffic NE–SW · NW half",
+      "category": "ground/markings/4lane",
+      "layer": "overlay",
+      "file": "ground/markings/4lane/crosswalk_4lane_ne_sw_half_nw.png",
+      "recommended_ground": "road_4lane_straight_ne_sw_sidewalk_nw",
+      "variants": {
+        "default_bleed": "ground/markings/4lane/crosswalk_4lane_ne_sw_half_nw.png",
+        "logical": "ground/markings/4lane/crosswalk_4lane_ne_sw_half_nw_logical.png"
+      }
+    },
+    {
+      "key": "crosswalk_4lane_ne_sw_half_se",
+      "label": "4-lane crossing half · traffic NE–SW · SE half",
+      "category": "ground/markings/4lane",
+      "layer": "overlay",
+      "file": "ground/markings/4lane/crosswalk_4lane_ne_sw_half_se.png",
+      "recommended_ground": "road_4lane_straight_ne_sw_sidewalk_se",
+      "variants": {
+        "default_bleed": "ground/markings/4lane/crosswalk_4lane_ne_sw_half_se.png",
+        "logical": "ground/markings/4lane/crosswalk_4lane_ne_sw_half_se_logical.png"
+      }
+    }
+  ],
+  "files": [
+    {
+      "old_file": "assets/grass.png",
+      "old_key": "G",
+      "new_file": "assets/ground/terrain/grass.png",
+      "key": "grass",
+      "label": "Grass",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "7d4251bf39c8c4d679b8bd221bc9102c587002f2b7c99b2f4404e5e01f4a924d"
+    },
+    {
+      "old_file": "assets/pavement.png",
+      "old_key": "P",
+      "new_file": "assets/ground/terrain/ground_pavement.png",
+      "key": "ground_pavement",
+      "label": "Concrete pavement",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "878ccfe72c256c50bba435930513b59c5240a5d8d3e491c0c9bd369358749604"
+    },
+    {
+      "old_file": "assets/road.png",
+      "old_key": "R",
+      "new_file": "assets/ground/roads/2lane/road.png",
+      "key": "road",
+      "label": "2-lane straight · NW–SE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "b1c218f7a6fa68e9d9a60e23f8b76e73e17728d8676d754d1a5ddbda77409fcb"
+    },
+    {
+      "old_file": "assets/road_b.png",
+      "old_key": "RB",
+      "new_file": "assets/ground/roads/2lane/road_2lane_straight_ne_sw.png",
+      "key": "road_2lane_straight_ne_sw",
+      "label": "2-lane straight · NE–SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "8e5ae105aef2ea2b7cbcf457a7d697fdd28ea28061611405dc90c9e576db947e"
+    },
+    {
+      "old_file": "assets/road_corner_a.png",
+      "old_key": "RCA",
+      "new_file": "assets/ground/roads/2lane/road_2lane_corner_nw_ne.png",
+      "key": "road_2lane_corner_nw_ne",
+      "label": "2-lane corner · NW + NE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "011fdef967c9d7b387eb4103bafecfa3c7e8bf85909e46d09786431bfbb98dc3"
+    },
+    {
+      "old_file": "assets/road_corner_b.png",
+      "old_key": "RCB",
+      "new_file": "assets/ground/roads/2lane/road_2lane_corner_ne_se.png",
+      "key": "road_2lane_corner_ne_se",
+      "label": "2-lane corner · NE + SE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "9658134cd0d316bf94785e278535a9bf9837514fc6aa6cf810dd50e8ddddc979"
+    },
+    {
+      "old_file": "assets/road_corner_c.png",
+      "old_key": "RCC",
+      "new_file": "assets/ground/roads/2lane/road_2lane_corner_se_sw.png",
+      "key": "road_2lane_corner_se_sw",
+      "label": "2-lane corner · SE + SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "46a18c08c988026efd5416e2fd44f6dd9d55dd6b6439f818e3d10017f7ff39ee"
+    },
+    {
+      "old_file": "assets/road_corner_d.png",
+      "old_key": "RCD",
+      "new_file": "assets/ground/roads/2lane/road_2lane_corner_nw_sw.png",
+      "key": "road_2lane_corner_nw_sw",
+      "label": "2-lane corner · NW + SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "ea1472b859ba1f652800549e1b2230f35b1dcb9b202a7a0bd7854f12061aeb7c"
+    },
+    {
+      "old_file": "assets/road_cross.png",
+      "old_key": "RC",
+      "new_file": "assets/ground/roads/2lane/road_2lane_cross.png",
+      "key": "road_2lane_cross",
+      "label": "2-lane four-way intersection",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "0740c8cb4bc0f51dae16d4589ba4c55d8dd5d5350082f5a9c4bb5be3635976ad"
+    },
+    {
+      "old_file": "assets/road_dead_end_a.png",
+      "old_key": "RDEA",
+      "new_file": "assets/ground/roads/2lane/road_2lane_dead_end_open_nw.png",
+      "key": "road_2lane_dead_end_open_nw",
+      "label": "2-lane dead end · entrance NW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "81b07f762bda4db7b17fe31f935ae2f846dae1713b8c989840a9ba5c236bc359"
+    },
+    {
+      "old_file": "assets/road_dead_end_b.png",
+      "old_key": "RDEB",
+      "new_file": "assets/ground/roads/2lane/road_2lane_dead_end_open_ne.png",
+      "key": "road_2lane_dead_end_open_ne",
+      "label": "2-lane dead end · entrance NE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "5617f51b5371f6ab3f034d5e0115d2d8104427759ef1dd2114441bb988b27cc1"
+    },
+    {
+      "old_file": "assets/road_dead_end_c.png",
+      "old_key": "RDEC",
+      "new_file": "assets/ground/roads/2lane/road_2lane_dead_end_open_se.png",
+      "key": "road_2lane_dead_end_open_se",
+      "label": "2-lane dead end · entrance SE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "916d8e6e9b1bac369a2943789b43d7c740846492f0be334a61152c2d3845683f"
+    },
+    {
+      "old_file": "assets/road_dead_end_d.png",
+      "old_key": "RDED",
+      "new_file": "assets/ground/roads/2lane/road_2lane_dead_end_open_sw.png",
+      "key": "road_2lane_dead_end_open_sw",
+      "label": "2-lane dead end · entrance SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "97784e894a90a501c2529291d2ab03d110e35f2685441631004a5e72f1351e3e"
+    },
+    {
+      "old_file": "assets/road_t_a.png",
+      "old_key": "RTA",
+      "new_file": "assets/ground/roads/2lane/road_2lane_t_branch_ne.png",
+      "key": "road_2lane_t_branch_ne",
+      "label": "2-lane T · branch NE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "7ebe8a8b970f0468bb0686cdae749cead371540018bd3f47c06271179d2e521f"
+    },
+    {
+      "old_file": "assets/road_t_b.png",
+      "old_key": "RTB",
+      "new_file": "assets/ground/roads/2lane/road_2lane_t_branch_se.png",
+      "key": "road_2lane_t_branch_se",
+      "label": "2-lane T · branch SE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "78403db4a197feb3d4cda828fa8a7fe574dfde7006f249a58fcaf00f743ac942"
+    },
+    {
+      "old_file": "assets/road_t_c.png",
+      "old_key": "RTC",
+      "new_file": "assets/ground/roads/2lane/road_2lane_t_branch_sw.png",
+      "key": "road_2lane_t_branch_sw",
+      "label": "2-lane T · branch SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "9fdddf5562574b8fb9797fd0aabeecbd4c74b36934998ebf2396e608b1ffc556"
+    },
+    {
+      "old_file": "assets/road_t_d.png",
+      "old_key": "RTD",
+      "new_file": "assets/ground/roads/2lane/road_2lane_t_branch_nw.png",
+      "key": "road_2lane_t_branch_nw",
+      "label": "2-lane T · branch NW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "9f999caba69576507e74939f92685a1ecc1249bc59c864b6f1f7ed7ca98db58f"
+    },
+    {
+      "old_file": "assets/road_left.png",
+      "old_key": "RL",
+      "new_file": "assets/ground/roads/4lane/road_4lane_straight_nw_se_sidewalk_sw.png",
+      "key": "road_4lane_straight_nw_se_sidewalk_sw",
+      "label": "4-lane straight half · NW–SE · sidewalk SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "12b71f50ff8c5f40cdc83604bb47dec75d6425b356abe0cf9ebc63167a3d80ff"
+    },
+    {
+      "old_file": "assets/road_right.png",
+      "old_key": "RR",
+      "new_file": "assets/ground/roads/4lane/road_4lane_straight_nw_se_sidewalk_ne.png",
+      "key": "road_4lane_straight_nw_se_sidewalk_ne",
+      "label": "4-lane straight half · NW–SE · sidewalk NE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "fdd57d4f77ab5328b7e425d2f238968a564d92326d93539d7c6686a2e0b448fd"
+    },
+    {
+      "old_file": "assets/road_left_b.png",
+      "old_key": "RLB",
+      "new_file": "assets/ground/roads/4lane/road_4lane_straight_ne_sw_sidewalk_nw.png",
+      "key": "road_4lane_straight_ne_sw_sidewalk_nw",
+      "label": "4-lane straight half · NE–SW · sidewalk NW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "2d26ab3cdaa01d9e43002c3c003bcabe201b2a8d432b35034efd612339230371"
+    },
+    {
+      "old_file": "assets/road_right_b.png",
+      "old_key": "RRB",
+      "new_file": "assets/ground/roads/4lane/road_4lane_straight_ne_sw_sidewalk_se.png",
+      "key": "road_4lane_straight_ne_sw_sidewalk_se",
+      "label": "4-lane straight half · NE–SW · sidewalk SE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "045c12974b14348b82617c78addf98c7995f868b1ae504cb120be1143b9d222d"
+    },
+    {
+      "old_file": "assets/main_side_t_entry_a.png",
+      "old_key": "MTEA",
+      "new_file": "assets/ground/roads/4lane/road_4lane_to_2lane_t_branch_ne_entry.png",
+      "key": "road_4lane_to_2lane_t_branch_ne_entry",
+      "label": "4↔2-lane T · branch NE · entry half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "f6b5fb3a504127d0edb1f132b48275bfb799e786adb0e21d4d614c29ea400eea"
+    },
+    {
+      "old_file": "assets/main_side_t_far_a.png",
+      "old_key": "MTFA",
+      "new_file": "assets/ground/roads/4lane/road_4lane_to_2lane_t_branch_ne_far.png",
+      "key": "road_4lane_to_2lane_t_branch_ne_far",
+      "label": "4↔2-lane T · branch NE · far half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "1a3867a779b931faad862cd1d7e0d020ec59c2a80b094b9fcc371a023d83d60e"
+    },
+    {
+      "old_file": "assets/main_side_t_entry_b.png",
+      "old_key": "MTEB",
+      "new_file": "assets/ground/roads/4lane/road_4lane_to_2lane_t_branch_nw_entry.png",
+      "key": "road_4lane_to_2lane_t_branch_nw_entry",
+      "label": "4↔2-lane T · branch NW · entry half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "d43137dfe4952af9ef5a1b2c277af761dd7447f93141f32d7e480113096aef54"
+    },
+    {
+      "old_file": "assets/main_side_t_far_b.png",
+      "old_key": "MTFB",
+      "new_file": "assets/ground/roads/4lane/road_4lane_to_2lane_t_branch_nw_far.png",
+      "key": "road_4lane_to_2lane_t_branch_nw_far",
+      "label": "4↔2-lane T · branch NW · far half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "3be17a5adab248318fd6e1dedd423311c90b701fd66771b937154e88175e7ed4"
+    },
+    {
+      "old_file": "assets/main_side_t_entry_c.png",
+      "old_key": "MTEC",
+      "new_file": "assets/ground/roads/4lane/road_4lane_to_2lane_t_branch_se_entry.png",
+      "key": "road_4lane_to_2lane_t_branch_se_entry",
+      "label": "4↔2-lane T · branch SE · entry half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "fe46fdc766d615c6a60b50b96ce0b1102b18c75960bf965de82751edd35603b1"
+    },
+    {
+      "old_file": "assets/main_side_t_far_c.png",
+      "old_key": "MTFC",
+      "new_file": "assets/ground/roads/4lane/road_4lane_to_2lane_t_branch_se_far.png",
+      "key": "road_4lane_to_2lane_t_branch_se_far",
+      "label": "4↔2-lane T · branch SE · far half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "ae2e60d3a2eda7f596ee4f7762d345ebfd8fd9f6ea8935e32bec3aca9083bc51"
+    },
+    {
+      "old_file": "assets/main_side_t_entry_d.png",
+      "old_key": "MTED",
+      "new_file": "assets/ground/roads/4lane/road_4lane_to_2lane_t_branch_sw_entry.png",
+      "key": "road_4lane_to_2lane_t_branch_sw_entry",
+      "label": "4↔2-lane T · branch SW · entry half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "760c9689e00a93f662263db0122a5e8f854cad1861c783e940de17ad73883832"
+    },
+    {
+      "old_file": "assets/main_side_t_far_d.png",
+      "old_key": "MTFD",
+      "new_file": "assets/ground/roads/4lane/road_4lane_to_2lane_t_branch_sw_far.png",
+      "key": "road_4lane_to_2lane_t_branch_sw_far",
+      "label": "4↔2-lane T · branch SW · far half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "0cf9edf1ca3ef39df072bd3895c23a1c6d220dd608ed3fddb76c172b306aae8a"
+    },
+    {
+      "old_file": "assets/main_corner_t_entry_a.png",
+      "old_key": "MCTEA",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_entry_corner_ne_se.png",
+      "key": "road_4lane_junction_entry_corner_ne_se",
+      "label": "4-lane junction · entry · corner NE/SE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "93558c123fdca5dad42ecb94dbcbdd6b6a4b283ab928c569fc69867b7cb08ea2"
+    },
+    {
+      "old_file": "assets/main_corner_t_entry_b.png",
+      "old_key": "MCTEB",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_entry_corner_nw_ne.png",
+      "key": "road_4lane_junction_entry_corner_nw_ne",
+      "label": "4-lane junction · entry · corner NW/NE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "a136cfe6dc6e9a884a7f60f3f6babcb0e38d071ad7c841abb75065bf962c4166"
+    },
+    {
+      "old_file": "assets/main_corner_t_entry_c.png",
+      "old_key": "MCTEC",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_entry_corner_se_sw.png",
+      "key": "road_4lane_junction_entry_corner_se_sw",
+      "label": "4-lane junction · entry · corner SE/SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "8d1b9ee4414096e8b790e337f5376e779ea3832bcee5607f86a135d9df33e088"
+    },
+    {
+      "old_file": "assets/main_corner_t_entry_d.png",
+      "old_key": "MCTED",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_entry_corner_nw_sw.png",
+      "key": "road_4lane_junction_entry_corner_nw_sw",
+      "label": "4-lane junction · entry · corner NW/SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "f7ad3bab94230dfd27f237a31700f579756a937c09cf005855ae915b20f994eb"
+    },
+    {
+      "old_file": "assets/main_corner_t_far_a1.png",
+      "old_key": "MCTFA1",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_far_sidewalk_sw_divider_se.png",
+      "key": "road_4lane_junction_far_sidewalk_sw_divider_se",
+      "label": "4-lane junction · far · sidewalk SW · divider SE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "9048c9325550894a6e443648cc5d582eac53973fc72cdcbc93b4faf5e6881e2d"
+    },
+    {
+      "old_file": "assets/main_corner_t_far_a2.png",
+      "old_key": "MCTFA2",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_far_sidewalk_sw_divider_nw.png",
+      "key": "road_4lane_junction_far_sidewalk_sw_divider_nw",
+      "label": "4-lane junction · far · sidewalk SW · divider NW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "caf952ff3fd37cd78f7109c0f0b6fad686167e0a85eb7be5c017ebf9e572e4fe"
+    },
+    {
+      "old_file": "assets/main_corner_t_far_b1.png",
+      "old_key": "MCTFB1",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_far_sidewalk_se_divider_ne.png",
+      "key": "road_4lane_junction_far_sidewalk_se_divider_ne",
+      "label": "4-lane junction · far · sidewalk SE · divider NE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "5aed68003593c17b6c9d71d8c7c3c666c1db7a29d2438d36025c2e9fb3329ca0"
+    },
+    {
+      "old_file": "assets/main_corner_t_far_b2.png",
+      "old_key": "MCTFB2",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_far_sidewalk_se_divider_sw.png",
+      "key": "road_4lane_junction_far_sidewalk_se_divider_sw",
+      "label": "4-lane junction · far · sidewalk SE · divider SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "4d3e50f5301846b14ba9cde6bc71977e43a39fd5755ef2763d5adf7188c6bff5"
+    },
+    {
+      "old_file": "assets/main_corner_t_far_c1.png",
+      "old_key": "MCTFC1",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_far_sidewalk_nw_divider_ne.png",
+      "key": "road_4lane_junction_far_sidewalk_nw_divider_ne",
+      "label": "4-lane junction · far · sidewalk NW · divider NE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "20caffc91d4e4be632b7ccb73cb587ccf034d8c50c7bde2de65a73790bfe05e6"
+    },
+    {
+      "old_file": "assets/main_corner_t_far_c2.png",
+      "old_key": "MCTFC2",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_far_sidewalk_nw_divider_sw.png",
+      "key": "road_4lane_junction_far_sidewalk_nw_divider_sw",
+      "label": "4-lane junction · far · sidewalk NW · divider SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "ade0ecd455c1b6fc7dacc5f480b2d90ce68d9e5b4b460422ae6be30c38913170"
+    },
+    {
+      "old_file": "assets/main_corner_t_far_d1.png",
+      "old_key": "MCTFD1",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_far_sidewalk_ne_divider_se.png",
+      "key": "road_4lane_junction_far_sidewalk_ne_divider_se",
+      "label": "4-lane junction · far · sidewalk NE · divider SE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "a10b1186ec7019b8b187c601679d05def2c6aa82a4a585555391d69553ffe31f"
+    },
+    {
+      "old_file": "assets/main_corner_t_far_d2.png",
+      "old_key": "MCTFD2",
+      "new_file": "assets/ground/roads/4lane/road_4lane_junction_far_sidewalk_ne_divider_nw.png",
+      "key": "road_4lane_junction_far_sidewalk_ne_divider_nw",
+      "label": "4-lane junction · far · sidewalk NE · divider NW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "e0eefbf30eb889307c44ec066b353bdc2a3a6b6f8b3d7d755608e220fef67ad4"
+    },
+    {
+      "old_file": "assets/crosswalk_2lane_bleed.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/2lane/crosswalk_2lane_nw_se.png",
+      "key": "crosswalk_2lane_nw_se",
+      "label": "2-lane crossing · traffic NW–SE",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "b660a9a49bb894177dd48928a6804834d66709de6a856f48790feb765f09ef0d"
+    },
+    {
+      "old_file": "assets/crosswalk_2lane.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/2lane/crosswalk_2lane_nw_se_logical.png",
+      "key": "crosswalk_2lane_nw_se",
+      "label": "2-lane crossing · traffic NW–SE",
+      "variant": "logical",
+      "size": [
+        512,
+        256
+      ],
+      "sha256": "ec86c2d44f01ee014338ce3bcb2e6be5d85bb155a282f58ced6c6f0479adeb2b"
+    },
+    {
+      "old_file": "assets/crosswalk_2lane_alt_bleed.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/2lane/crosswalk_2lane_ne_sw.png",
+      "key": "crosswalk_2lane_ne_sw",
+      "label": "2-lane crossing · traffic NE–SW",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "6401d550a6278baedd98daaa02986c4447932bd72433dac659c2c714470585c6"
+    },
+    {
+      "old_file": "assets/crosswalk_2lane_alt.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/2lane/crosswalk_2lane_ne_sw_logical.png",
+      "key": "crosswalk_2lane_ne_sw",
+      "label": "2-lane crossing · traffic NE–SW",
+      "variant": "logical",
+      "size": [
+        512,
+        256
+      ],
+      "sha256": "38eeb76f9aa235d1caf7afb8ca2f54494c103e1da4c0077875b0d39f69bffe9f"
+    },
+    {
+      "old_file": "assets/crosswalk_4lane_a_bleed.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/4lane/crosswalk_4lane_nw_se_half_ne.png",
+      "key": "crosswalk_4lane_nw_se_half_ne",
+      "label": "4-lane crossing half · traffic NW–SE · NE half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "0e18660306bedf337b6ae2d3ba7586f8d867c1b4c507dd3af79e885ddceee6bf"
+    },
+    {
+      "old_file": "assets/crosswalk_4lane_a.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/4lane/crosswalk_4lane_nw_se_half_ne_logical.png",
+      "key": "crosswalk_4lane_nw_se_half_ne",
+      "label": "4-lane crossing half · traffic NW–SE · NE half",
+      "variant": "logical",
+      "size": [
+        512,
+        256
+      ],
+      "sha256": "b253cd548e804739dd5bd91ef4c0b0588a6fffd26e71e196e89fed2b968aeb62"
+    },
+    {
+      "old_file": "assets/crosswalk_4lane_b_bleed.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/4lane/crosswalk_4lane_nw_se_half_sw.png",
+      "key": "crosswalk_4lane_nw_se_half_sw",
+      "label": "4-lane crossing half · traffic NW–SE · SW half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "2c85425a34462adcb11984bf88dc2fcfa45d5c1e35cbd12aa2f9431618f6067b"
+    },
+    {
+      "old_file": "assets/crosswalk_4lane_b.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/4lane/crosswalk_4lane_nw_se_half_sw_logical.png",
+      "key": "crosswalk_4lane_nw_se_half_sw",
+      "label": "4-lane crossing half · traffic NW–SE · SW half",
+      "variant": "logical",
+      "size": [
+        512,
+        256
+      ],
+      "sha256": "a8e99391c0ef535bc8bafb1062927356cfe9738a5a8ff49c4422d607ed20d25a"
+    },
+    {
+      "old_file": "assets/crosswalk_4lane_a_alt_bleed.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/4lane/crosswalk_4lane_ne_sw_half_nw.png",
+      "key": "crosswalk_4lane_ne_sw_half_nw",
+      "label": "4-lane crossing half · traffic NE–SW · NW half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "a88d67cff8ef5bc89a7a75f82b8837e310808507b87467c21550be0f73f9448e"
+    },
+    {
+      "old_file": "assets/crosswalk_4lane_a_alt.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/4lane/crosswalk_4lane_ne_sw_half_nw_logical.png",
+      "key": "crosswalk_4lane_ne_sw_half_nw",
+      "label": "4-lane crossing half · traffic NE–SW · NW half",
+      "variant": "logical",
+      "size": [
+        512,
+        256
+      ],
+      "sha256": "16e6682af38c8f1410a6c3bac72e6f8772a27a33d353f44d2fd0106ab031ab6f"
+    },
+    {
+      "old_file": "assets/crosswalk_4lane_b_alt_bleed.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/4lane/crosswalk_4lane_ne_sw_half_se.png",
+      "key": "crosswalk_4lane_ne_sw_half_se",
+      "label": "4-lane crossing half · traffic NE–SW · SE half",
+      "variant": "default_bleed",
+      "size": [
+        514,
+        258
+      ],
+      "sha256": "09c86b3546616d7e10d76f5a2ce10efb87597081868370acc94aa3220636da02"
+    },
+    {
+      "old_file": "assets/crosswalk_4lane_b_alt.png",
+      "old_key": null,
+      "new_file": "assets/ground/markings/4lane/crosswalk_4lane_ne_sw_half_se_logical.png",
+      "key": "crosswalk_4lane_ne_sw_half_se",
+      "label": "4-lane crossing half · traffic NE–SW · SE half",
+      "variant": "logical",
+      "size": [
+        512,
+        256
+      ],
+      "sha256": "110d2136a5595f39c6bbf759b74b51055c6ace2e2b75f3de882c90bd5ce15ace"
+    }
+  ],
+  "implemented_version": "3.0.0",
+  "layout": "collapsible bottom asset tray, folder navigator, thumbnail grid, optional map-settings side panel",
+  "migrated_ground_map": [
+    [
+      "ground_pavement",
+      "road_2lane_straight_ne_sw",
+      "ground_pavement",
+      "ground_pavement",
+      "ground_pavement",
+      "ground_pavement",
+      "ground_pavement",
+      "ground_pavement",
+      "ground_pavement",
+      "ground_pavement"
+    ],
+    [
+      "ground_pavement",
+      "road_2lane_t_branch_se",
+      "road",
+      "road_2lane_t_branch_sw",
+      "road",
+      "road",
+      "road",
+      "road",
+      "road_2lane_t_branch_sw",
+      "road"
+    ],
+    [
+      "ground_pavement",
+      "road_2lane_straight_ne_sw",
+      "grass",
+      "road_2lane_straight_ne_sw",
+      "ground_pavement",
+      "ground_pavement",
+      "ground_pavement",
+      "ground_pavement",
+      "road_2lane_straight_ne_sw",
+      "ground_pavement"
+    ],
+    [
+      "road_2lane_dead_end_open_se",
+      "road_2lane_t_branch_ne",
+      "road",
+      "road_2lane_cross",
+      "road",
+      "road_2lane_t_branch_sw",
+      "road_2lane_corner_nw_sw",
+      "road_2lane_corner_se_sw",
+      "road_2lane_t_branch_ne",
+      "road_2lane_corner_nw_sw"
+    ],
+    [
+      "ground_pavement",
+      "ground_pavement",
+      "ground_pavement",
+      "road_2lane_straight_ne_sw",
+      "ground_pavement",
+      "road_2lane_corner_ne_se",
+      "road_2lane_corner_nw_ne",
+      "road_2lane_corner_ne_se",
+      "road",
+      "road_2lane_corner_nw_ne"
+    ],
+    [
+      "road_4lane_straight_nw_se_sidewalk_ne",
+      "road_4lane_straight_nw_se_sidewalk_ne",
+      "road_4lane_straight_nw_se_sidewalk_ne",
+      "road_4lane_to_2lane_t_branch_ne_entry",
+      "road_4lane_straight_nw_se_sidewalk_ne",
+      "road_4lane_straight_nw_se_sidewalk_ne",
+      "road_4lane_straight_nw_se_sidewalk_ne",
+      "road_4lane_junction_far_sidewalk_ne_divider_nw",
+      "road_4lane_junction_far_sidewalk_ne_divider_se",
+      "road_4lane_straight_nw_se_sidewalk_ne"
+    ],
+    [
+      "road_4lane_straight_nw_se_sidewalk_sw",
+      "road_4lane_straight_nw_se_sidewalk_sw",
+      "road_4lane_straight_nw_se_sidewalk_sw",
+      "road_4lane_to_2lane_t_branch_sw_entry",
+      "road_4lane_straight_nw_se_sidewalk_sw",
+      "road_4lane_straight_nw_se_sidewalk_sw",
+      "road_4lane_straight_nw_se_sidewalk_sw",
+      "road_4lane_junction_entry_corner_nw_sw",
+      "road_4lane_junction_entry_corner_se_sw",
+      "road_4lane_straight_nw_se_sidewalk_sw"
+    ],
+    [
+      "grass",
+      "grass",
+      "grass",
+      "road_2lane_straight_ne_sw",
+      "grass",
+      "grass",
+      "grass",
+      "road_4lane_straight_ne_sw_sidewalk_nw",
+      "road_4lane_straight_ne_sw_sidewalk_se",
+      "grass"
+    ],
+    [
+      "grass",
+      "grass",
+      "road_2lane_dead_end_open_se",
+      "road_2lane_cross",
+      "road_2lane_dead_end_open_nw",
+      "grass",
+      "road_4lane_straight_nw_se_sidewalk_ne",
+      "road_4lane_junction_entry_corner_nw_ne",
+      "road_4lane_junction_entry_corner_ne_se",
+      "road_4lane_straight_nw_se_sidewalk_ne"
+    ],
+    [
+      "grass",
+      "grass",
+      "grass",
+      "road_2lane_dead_end_open_ne",
+      "grass",
+      "grass",
+      "road_4lane_straight_nw_se_sidewalk_sw",
+      "road_4lane_junction_far_sidewalk_sw_divider_nw",
+      "road_4lane_junction_far_sidewalk_sw_divider_se",
+      "road_4lane_straight_nw_se_sidewalk_sw"
+    ]
+  ]
+}
