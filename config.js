@@ -32,10 +32,18 @@ export const ASSETS = {
   MTFC: 'main_side_t_far_c.png',
   MTED: 'main_side_t_entry_d.png',
   MTFD: 'main_side_t_far_d.png',
-  MCTE1A: 'main_corner_t_entry1_a.png',
-  MCTE2A: 'main_corner_t_entry2_a.png',
-  MCTF1A: 'main_corner_t_far1_a.png',
-  MCTF2A: 'main_corner_t_far2_a.png',
+  MCTEA: 'main_corner_t_entry_a.png',
+  MCTEB: 'main_corner_t_entry_b.png',
+  MCTEC: 'main_corner_t_entry_c.png',
+  MCTED: 'main_corner_t_entry_d.png',
+  MCTFA1: 'main_corner_t_far_a1.png',
+  MCTFA2: 'main_corner_t_far_a2.png',
+  MCTFB1: 'main_corner_t_far_b1.png',
+  MCTFB2: 'main_corner_t_far_b2.png',
+  MCTFC1: 'main_corner_t_far_c1.png',
+  MCTFC2: 'main_corner_t_far_c2.png',
+  MCTFD1: 'main_corner_t_far_d1.png',
+  MCTFD2: 'main_corner_t_far_d2.png',
   // Explicit metadata is optional for our symmetric ground tiles:
   // X: { file: 'custom.png', label: 'Custom', logicalWidth: 512,
   //      logicalHeight: 256, bleed: 1 },
@@ -149,8 +157,8 @@ export const MAP = [
     "RDEA",
     "G",
     "RR",
-    "MCTE2A",
-    "MCTE1A",
+    "MCTFA1",
+    "MCTFA1",
     "RR"
   ],
   [
@@ -161,8 +169,8 @@ export const MAP = [
     "G",
     "G",
     "RL",
-    "MCTF2A",
-    "MCTF1A",
+    "MCTFA1",
+    "MCTFA2",
     "RL"
   ]
 ];
