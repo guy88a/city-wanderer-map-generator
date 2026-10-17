@@ -15,6 +15,10 @@ export const ASSETS = {
   RCB: 'road_corner_b.png',
   RCC: 'road_corner_c.png',
   RCD: 'road_corner_d.png',
+  RTA: 'road_t_a.png',
+  RTB: 'road_t_b.png',
+  RTC: 'road_t_c.png',
+  RTD: 'road_t_d.png',
   // Explicit metadata is optional for our symmetric ground tiles:
   // X: { file: 'custom.png', label: 'Custom', logicalWidth: 512,
   //      logicalHeight: 256, bleed: 1 },
@@ -24,9 +28,124 @@ export const ASSETS = {
 
 // Columns run down-right; rows run down-left.
 export const MAP = [
-  ['P', 'P', 'P', 'P', 'P'],
-  ['P', 'P', 'P', 'P', 'P'],
-  ['R', 'R', 'R', 'R', 'R'],
-  ['G', 'G', 'G', 'G', 'G'],
-  ['G', 'G', 'G', 'G', 'G'],
+  [
+    "P",
+    "RB",
+    "P",
+    "P",
+    "P",
+    "P",
+    "P",
+    "P",
+    "P",
+    "P"
+  ],
+  [
+    "P",
+    "RTB",
+    "R",
+    "RTC",
+    "R",
+    "R",
+    "R",
+    "R",
+    "R",
+    "R"
+  ],
+  [
+    "P",
+    "RB",
+    "G",
+    "RB",
+    "P",
+    "P",
+    "P",
+    "P",
+    "P",
+    "P"
+  ],
+  [
+    "R",
+    "RTA",
+    "R",
+    "RCA",
+    "P",
+    "RCC",
+    "RCD",
+    "RCC",
+    "R",
+    "RCD"
+  ],
+  [
+    "P",
+    "P",
+    "P",
+    "P",
+    "P",
+    "RCB",
+    "RCA",
+    "RCB",
+    "R",
+    "RCA"
+  ],
+  [
+    "RR",
+    "RR",
+    "RR",
+    "RR",
+    "RR",
+    "RR",
+    "RR",
+    "RR",
+    "RR",
+    "RR"
+  ],
+  [
+    "RL",
+    "RL",
+    "RL",
+    "RL",
+    "RL",
+    "RL",
+    "RL",
+    "RL",
+    "RL",
+    "RL"
+  ],
+  [
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G"
+  ],
+  [
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G"
+  ],
+  [
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G",
+    "G"
+  ]
 ];
