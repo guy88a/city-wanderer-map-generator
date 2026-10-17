@@ -19,6 +19,7 @@ export const ASSETS = {
   RTB: 'road_t_b.png',
   RTC: 'road_t_c.png',
   RTD: 'road_t_d.png',
+  RC: 'road_cross.png',
   // Explicit metadata is optional for our symmetric ground tiles:
   // X: { file: 'custom.png', label: 'Custom', logicalWidth: 512,
   //      logicalHeight: 256, bleed: 1 },
@@ -49,7 +50,7 @@ export const MAP = [
     "R",
     "R",
     "R",
-    "R",
+    "RTC",
     "R"
   ],
   [
@@ -61,19 +62,19 @@ export const MAP = [
     "P",
     "P",
     "P",
-    "P",
+    "RB",
     "P"
   ],
   [
     "R",
     "RTA",
     "R",
-    "RCA",
-    "P",
-    "RCC",
+    "RTA",
+    "R",
+    "RTC",
     "RCD",
     "RCC",
-    "R",
+    "RTA",
     "RCD"
   ],
   [
