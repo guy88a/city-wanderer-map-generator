@@ -1,103 +1,95 @@
-# City Wonderer — local map tester
+# City Wonderer — Map Studio v3
 
-A small dependency-free HTML/JavaScript ground-tile tester. Includes the current pavement, grass v02 and road draft. No build step, account or hosting required.
+Your uploaded tester, reorganized and upgraded. The default is your original 10×10 city, migrated to descriptive keys. All 53 supplied PNGs are preserved byte-for-byte under new paths. The palette contains 41 ground items and six crossing overlays; logical and padded crossing copies share one palette item.
 
-## Run
+## Start
 
-Extract the ZIP, open this folder in a terminal and run:
+Extract the ZIP, open the project folder in a terminal and run:
 
 ```sh
 npm start
 ```
 
-Open **http://localhost:5173**. No `npm install` is needed. Requires Node.js 18 or newer.
+Open http://localhost:5173. Node.js 18+ is sufficient; **no npm install or build step is needed**. VS Code Live Server or `python -m http.server 5173` also work. Open through HTTP, rather than double-clicking index.html.
 
-Alternatively, use VS Code Live Server, or run `python -m http.server 5173` from this folder. Use an HTTP server: double-clicking `index.html` will not reliably load JavaScript modules.
+## Layout and painting
 
-## The two things to edit
+- **Bottom asset tray:** choose Ground or Overlay, browse the folder tree, then select a thumbnail. Hide the tray to give the canvas more height. It starts collapsed on short landscape screens and respects your explicit show/hide choice.
+- **Ground tiles:** Ground, Roads → 2 lanes / 4 lanes, and Road markings → 2 lanes / 4 lanes. Road markings appear on the Overlay layer.
+- **Props / Buildings:** reserved catalog folders. Object placement, tall sprites and free-position props are future work; no speculative building subdivisions are added.
+- **Search:** matches the active layer's labels, new keys, filenames and old IDs such as RCA or MCTFA1. It searches all folders on that layer. Clear search to restore folder expansion.
+- **Thumbnail details:** hover or keyboard focus shows a tooltip. Selecting a thumbnail also shows its name, key, filename, category and geometry on the right of the tray. On narrow phones the selected details appear beneath the grid; no labels are permanently attached to thumbnails.
+- **Map settings:** opens the array, dimensions, saving and loading controls. It is an optional side panel rather than a permanent sidebar.
 
-**1. Put images in `assets/` and register a key in `config.js`:**
+Drag to paint. Space+drag or middle-drag pans; wheel zooms. Fit frames the map. Keys 1–9 select from the displayed thumbnail grid; 0 selects Erase. Erase only affects the active layer. Ground and Overlay retain independent brushes and independent undo/redo histories. Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z operate on the active layer. A drag stroke is one history item.
+
+Both layers remain string-or-null 2D arrays. Ground renders completely before Overlay. Each cell supports one ground asset and one overlay in this update.
+
+## Map arrays, dimensions and samples
+
+`config.js` holds the default MAP, OVERLAYS and TILE_SIZE. The default is your migrated 10×10 map; **Samples → Crossings** is a separate 11×11 demonstration containing all six crossing overlays. A dirty-scene prompt protects unsaved changes when replacing the scene. Your configured city remains available as an immutable sample.
+
+Map settings displays the active layer's array. Copy copies just that array. Apply validates names, layer assignment and dimensions before changing anything. Ground array dimensions may change the shared grid; Overlay dimensions must match it.
+
+Resize preserves cells still in bounds. New ground cells use the ground brush; new overlay cells are empty. Shrinking asks before cropping occupied cells. Resize and full-scene replacement start fresh histories for both layers because their array shapes may have changed. The result message explains the history reset. Same-size array application remains undoable on its layer.
+
+## Separate exports and imports
+
+Choose an **Export target**: Full scene, Ground only, or Overlay only.
+
+| Export | JSON | PNG |
+| --- | --- | --- |
+| Full scene | Version, logical tile size, both arrays and complete catalog | Both layers, no guides |
+| Ground only | Ground 2D array | Ground only, no guides |
+| Overlay only | Overlay 2D array | Paint over transparency, no ground or guides |
+
+PNG targets are explicit: a full-scene PNG includes overlays even if the workspace Overlays checkbox is off. Large PNGs retain the 8192 px / 32 MP export limits. Full scene JSON marks the current scene saved; PNGs and individual-layer arrays do not replace a complete scene backup.
+
+Import target chooses a scene/legacy map, a Ground array or an Overlay array. Known old keys and filenames migrate automatically. A bare legacy 2D map defaults to Ground for scene import. Full scenes preserve their valid logical tile size. Invalid keys, layer mismatches, bad dimensions or failed new image loads are reported before the scene is replaced. Unknown references are not guessed or dropped.
+
+Image data is not embedded in JSON: keep the corresponding files in assets/. Imported custom registrations remain available for the session and future scene/asset-list exports. Export asset list downloads the complete catalog separately. The editor does not silently write config.js or catalog.js back to disk. Ready-to-import full-scene examples are in examples/.
+
+## Asset registration
+
+Put image files in assets/, then click **+ Asset**. Provide relative filename, key, display name, layer and category. A key is suggested from the filename. Duplicate or legacy-reserved keys are rejected. Optional logical width/height/bleed overrides are available in the form. The image must successfully load and pass geometry validation before it is registered.
+
+For permanent configuration, edit `catalog.js`. Strings still work for simple ground registration; descriptors supply labels, layer and category:
 
 ```js
 export const ASSETS = {
-  P: 'pavement.png',
-  G: 'grass.png',
-  R: 'road.png',
-  X: 'another-tile.png',
+  // ...existing entries...
+  my_road: {
+    file: 'ground/roads/2lane/my_road.png',
+    label: 'My road',
+    category: 'ground/roads/2lane',
+    layer: 'ground',
+  },
 };
 ```
 
-Every registry entry loads automatically and appears in the palette. No changes to rendering code are needed. The folder is not automatically scanned; add one registry entry per asset. Nested filenames such as `roads/straight.png` also work. Refresh after editing files.
+Nested relative paths are supported. Filenames must remain under assets/. The folder is not scanned automatically. For this update, supported ground and overlay images remain 2:1 logical diamonds with symmetric bleed; tall buildings and free-position object anchors are deliberately not implemented yet.
 
-**2. Use those keys in the rectangular 2D map array:**
+## Directions, names and crossings
 
-```js
-export const MAP = [
-  ['P', 'P', 'P'],
-  ['R', 'R', 'R'],
-  ['G', 'G', null],
-];
-```
+Directions are **screen-relative tile edges**, not the game's north: NW is top-left, NE top-right, SE bottom-right and SW bottom-left. Straight axes describe vehicle travel. Crossing axes describe the underlying road, not pedestrian travel. T names identify the branch; dead ends identify their open entrance. Four-lane halves name their outside sidewalk edge.
 
-`null` means an empty cell. Columns run down-right on screen; rows run down-left. The road's travel axis follows columns. Missing assets are reported and marked on the map.
+`grass.png` and `road.png` keep their filenames. The road key `road` is the intentional naming exception and travels NW–SE. `ASSET_NAMES.md` is the readable old-to-new filename table. `asset-rename-map.json` records every old key, old path, new path, display label and original hash. Shared four-lane junction entry pieces are named by sidewalk corner; far pieces by sidewalk side and divider-stub end. This preserves their reuse across different junction assemblies.
 
-## Bleed and placement
+| Crossing key | Ground key underneath |
+| --- | --- |
+| crosswalk_2lane_nw_se | road |
+| crosswalk_2lane_ne_sw | road_2lane_straight_ne_sw |
+| crosswalk_4lane_nw_se_half_ne | road_4lane_straight_nw_se_sidewalk_ne |
+| crosswalk_4lane_nw_se_half_sw | road_4lane_straight_nw_se_sidewalk_sw |
+| crosswalk_4lane_ne_sw_half_nw | road_4lane_straight_ne_sw_sidewalk_nw |
+| crosswalk_4lane_ne_sw_half_se | road_4lane_straight_ne_sw_sidewalk_se |
 
-Grid spacing uses the **logical diamond size**, never padded image dimensions. `TILE_SIZE` defaults to 512×256. Set it to 256×128 if you want runtime-sized placement. The zoom percentage is relative to this chosen logical size.
+NW–SE main-road pairs use the NE-sidewalk half on the preceding row and the SW-sidewalk half on the following row. Alternate pairs use the NW-sidewalk half in the preceding column and the SE-sidewalk half in the following column. The six padded crossing files are the defaults; `_logical.png` copies remain optional variants.
 
-The loader detects a 2:1 diamond with symmetric padding:
+## Bleed and scale
 
-| Image size | Logical footprint | Bleed on each side |
-|---|---|---|
-| 512×256 | 512×256 | 0 px |
-| 514×258 | 512×256 | 1 px |
-| 256×128 | 256×128 | 0 px |
-| 258×130 | 256×128 | 1 px |
-
-Source and runtime images can be mixed: each is scaled to the chosen logical grid size. Source 1px bleed and runtime 1px bleed scale differently, as expected.
-
-All supplied sprites have centered anchors. A padded 514×258 tile on a 512×256 grid is drawn 1px beyond the logical box on each side. Neighbor centers remain displaced by (±256, ±128). A 5×5 map exports to 2562×1282 with the included 1px source bleed.
-
-For a custom ground asset, specify metadata if needed:
-
-```js
-X: {
-  file: 'another-tile.png',
-  label: 'Alternate pavement',
-  logicalWidth: 512,
-  logicalHeight: 256,
-  bleed: 1,
-},
-```
-
-The image must then be 514×258. Metadata and dimensions are validated; incorrect files display a useful error. Automatic inference permits 0–4px symmetric bleed. This version handles flat ground diamonds, not tall building sprites or asymmetric padding.
-
-The tester uses Canvas 2D, not Phaser/WebGL. It helps evaluate composition, source/runtime appearance, texture joins and alpha overlaps. Final Phaser sampling and camera behavior still need testing in the game.
-
-## Controls
-
-- Select an asset and drag to paint. Choose Erase for empty cells.
-- Space + drag or middle mouse button: pan. Mouse wheel: zoom around cursor.
-- Fit: frame the complete map. `1`–`9`: select assets; `0`: erase.
-- Ctrl/Cmd+Z: undo; Ctrl/Cmd+Shift+Z or Ctrl/Cmd+Y: redo.
-- Grid and cell-label guides are optional. Toggle smoothing to compare filtering; checker mode reveals transparent gaps.
-- Resize preserves existing cells, including empty cells, and fills new cells with the selected brush.
-- Edit the JSON array in the sidebar, then Apply. JSON requires double quotes.
-- Copy/Export JSON preserves the current map array. Paste it back into the editor, or into `MAP` in `config.js`.
-- Export PNG creates a transparent composition without the grid, labels, hover marker or interface. Bleed is preserved around outer edges. Very large maps are scaled down to a maximum 8192px edge / 32 megapixels, with the result reported.
-
-Edits are held in browser memory. Export or copy the map before refreshing. The tester does not modify files on disk.
-
-## Files
-
-- `config.js`: asset registry, logical tile size and starting map.
-- `app.js`: loading, painting, drawing, navigation and export.
-- `geometry.js`: centered isometric geometry, padding metadata and map validation.
-- `index.html`, `style.css`: interface.
-- `server.mjs`: small localhost static server.
-- `assets/`: the three source-bleed PNGs.
+Logical spacing is 512×256 by default. Source 514×258 and runtime 258×130 files are normalized to that logical grid. Symmetric padding shares the ground tile's center; **centered anchors need no additional offset**. Never use padded dimensions as grid spacing. No image pixels, road widths, camera angle or one-tile footprints were changed during the rename.
 
 ## Verification
 
-JavaScript syntax, included PNG dimensions, registry paths, map keys, center coordinates, inverse cell picking, mixed source/runtime bleed metadata and invalid-map handling were checked.
-Interactive browser QA was unavailable in the build environment. The app has not been verified in a live browser here.
+Run `npm run check` for JavaScript syntax and `npm test` for the included Node model/migration tests. These require no installed dependencies. `validation.json` records the completed image, browser and layout checks. Internal browser tooling is not bundled with this local app.

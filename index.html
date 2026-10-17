@@ -1,28 +1,31 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>City Wonderer · Map tester</title><link rel="stylesheet" href="style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>City Wonderer · Map studio</title><link rel="stylesheet" href="style.css"></head>
 <body>
-<header><div><span class="badge">CW</span><strong>City Wonderer</strong><span class="muted"> / Map tester</span></div><span class="chip">Local · Ground tiles</span></header>
+<header><div class="brand"><span class="badge">CW</span><div><strong>City Wonderer</strong><small>MAP STUDIO</small></div></div><div class="header-actions"><span id="dirty" class="pill">Saved</span><label class="sample-control">Sample<select id="sample"><option value="current">Your city · 10 × 10</option><option value="crossings">Crossings · both orientations</option></select></label><button id="settings-toggle" aria-expanded="false" aria-controls="settings">Map settings</button></div></header>
 <main>
-<aside>
- <div class="section-title">ASSETS <span id="asset-count"></span></div>
- <div id="assets" class="asset-list"></div>
- <button id="erase" class="wide">Erase / empty cell</button>
- <p class="help">Select an asset, then paint on the map. Add filenames and keys in <code>config.js</code>; images go in <code>assets/</code>.</p>
- <div class="section-title">MAP SIZE</div>
- <div class="size-inputs"><label>Rows<input id="rows" type="number" min="1" max="64" value="5"></label><label>Columns<input id="cols" type="number" min="1" max="64" value="5"></label><button id="resize">Resize</button></div>
- <div class="section-title">MAP ARRAY <button id="copy" class="small">Copy</button></div>
- <textarea id="map-json" aria-label="Editable map array" spellcheck="false"></textarea>
- <div class="pair"><button id="apply" class="primary">Apply array</button><button id="reset">Reset sample</button></div>
- <div class="pair"><button id="export-json">Export JSON</button><button id="export-png">Export PNG</button></div>
- <p class="help">JSON uses double quotes. Rows run down-left; columns run down-right. <code>null</code> leaves a cell empty.</p>
- <div id="message" role="status" aria-live="polite"></div>
-</aside>
-<section class="workspace">
- <nav><div class="group"><button id="undo" title="Ctrl/Cmd+Z">↶ Undo</button><button id="redo" title="Ctrl/Cmd+Shift+Z">↷ Redo</button></div><div class="group"><label><input type="checkbox" id="grid" checked>Grid</label><label><input type="checkbox" id="labels">Cell labels</label><label><input type="checkbox" id="smooth" checked>Smoothing</label><label><input type="checkbox" id="checker">Checker</label></div><div class="group"><button id="zoom-out" aria-label="Zoom out">−</button><output id="zoom-label">100%</output><button id="zoom-in" aria-label="Zoom in">+</button><button id="fit">Fit</button></div></nav>
- <div id="viewport"><canvas id="canvas" aria-label="Isometric tile map"></canvas><div class="hint">Paint: drag · Pan: Space + drag / middle button · Zoom: wheel</div></div>
- <footer><span id="stats"></span><span id="hover">—</span></footer>
-</section>
+ <section class="workspace" aria-label="Map workspace">
+  <nav class="tools"><div class="group"><button id="undo" title="Undo on the active layer (Ctrl/Cmd+Z)">↶ Undo</button><button id="redo" title="Redo on the active layer (Ctrl/Cmd+Shift+Z)">↷ Redo</button><span id="history-label" class="muted">Ground history</span></div><div class="group view-options"><label><input id="grid" type="checkbox">Grid</label><label><input id="labels" type="checkbox">Cell labels</label><label><input id="show-overlays" type="checkbox" checked>Overlays</label><label><input id="smooth" type="checkbox" checked>Smoothing</label><label><input id="checker" type="checkbox">Checker</label></div><div class="group zoom"><button id="zoom-out" aria-label="Zoom out">−</button><output id="zoom-label">100%</output><button id="zoom-in" aria-label="Zoom in">+</button><button id="fit">Fit</button></div></nav>
+  <div id="viewport"><canvas id="canvas" aria-label="Isometric map canvas"></canvas><div class="hint">Paint · drag &nbsp; Pan · Space + drag / middle button &nbsp; Zoom · wheel</div></div>
+  <footer><span id="stats"></span><span id="hover">—</span></footer>
+ </section>
+ <aside id="settings" hidden aria-label="Map settings">
+  <div class="panel-title"><h2>Map settings</h2><button id="settings-close" aria-label="Close map settings">×</button></div>
+  <div class="section-title">MAP SIZE</div><div class="size-inputs"><label>Rows<input id="rows" type="number" min="1" max="64"></label><label>Columns<input id="cols" type="number" min="1" max="64"></label><button id="resize">Resize</button></div>
+  <div class="section-title"><span id="array-label">GROUND ARRAY</span><button id="copy" class="small">Copy</button></div><textarea id="map-json" aria-label="Active layer map array" spellcheck="false"></textarea><button id="apply" class="primary wide">Apply array to active layer</button>
+  <p class="help">Plain 2D arrays of asset keys or null. Each layer has its own undo history. Resize and scene replacement start fresh histories.</p>
+  <div class="section-title">SAVE & LOAD</div><label>Export target<select id="export-target"><option value="scene">Full scene</option><option value="ground">Ground only</option><option value="overlay">Overlay only</option></select></label><div class="pair"><button id="export-json">Export JSON</button><button id="export-png">Export PNG</button></div>
+  <label>Import target<select id="import-target"><option value="scene">Scene / legacy map</option><option value="ground">Ground array</option><option value="overlay">Overlay array</option></select></label><button id="import-json" class="wide">Import JSON…</button><input id="json-file" type="file" accept=".json,application/json" hidden><button id="export-registry" class="wide secondary">Export asset list</button>
+  <p class="help">Scene JSON retains both layers and the asset list. PNG exports use the selected target and omit guides. Image files remain in assets/.</p>
+ </aside>
 </main>
+<section id="tray" aria-label="Asset palette">
+ <div class="tray-toolbar"><div class="layer-tabs" role="group" aria-label="Paint layer"><button id="layer-ground" class="selected" aria-pressed="true">Ground</button><button id="layer-overlay" aria-pressed="false">Overlay</button></div><button id="erase" title="Erase only on the active layer (0)">Erase</button><input id="asset-search" type="search" placeholder="Search name, key or filename…" aria-label="Search assets"><span id="asset-count" class="muted"></span><button id="add-open">+ Asset</button><button id="tray-toggle" aria-expanded="true" aria-controls="tray-body">Hide assets ▾</button></div>
+ <div id="tray-body"><div class="catalog"><div id="assets" aria-label="Asset folders"></div><div class="tile-pane"><div id="category-heading" class="eyebrow"></div><div id="asset-tiles" class="asset-grid"></div><div id="empty-search" class="empty" hidden>No matching assets on this layer.</div></div></div><div id="selected-asset" aria-live="polite"><span class="eyebrow">SELECTED ASSET</span><strong id="selected-label">—</strong><span id="selected-detail" class="muted">Select a thumbnail to paint.</span></div></div>
+</section>
+<div id="message" role="status" aria-live="polite">Loading your city…</div>
+<dialog id="add-dialog"><form id="add-form"><div class="panel-title"><h2>Add an asset</h2><button id="add-close" type="button" aria-label="Close add asset">×</button></div><p class="help">Put the image inside assets/ first, then register its relative filename here.</p><label>Filename<input id="asset-file" required placeholder="ground/roads/2lane/my_road.png"></label><label>Key<input id="asset-key" required placeholder="my_road"></label><label>Display name<input id="asset-label" placeholder="My road"></label><div class="pair"><label>Layer<select id="asset-layer"><option value="ground">Ground</option><option value="overlay">Overlay</option></select></label><label>Category<select id="asset-category"></select></label></div><details><summary>Geometry overrides (optional)</summary><div class="pair"><label>Logical width<input id="logical-width" type="number" min="1"></label><label>Logical height<input id="logical-height" type="number" min="1"></label><label>Bleed<input id="asset-bleed" type="number" min="0" step="0.5"></label></div></details><p id="add-error" class="error" role="alert"></p><button id="add-asset" class="primary wide" type="submit">Load asset</button></form></dialog>
+<dialog id="confirm-dialog"><form method="dialog"><h2 id="confirm-title">Replace this scene?</h2><p id="confirm-text">You have unsaved changes. Export scene JSON first if you want to keep them.</p><div class="pair"><button value="cancel">Cancel</button><button value="ok" class="primary">Continue</button></div></form></dialog>
+<div id="tooltip" role="tooltip" hidden></div>
 <script type="module" src="app.js"></script>
 </body></html>

@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "version": "3.0.0",
+  "source_archive": "City_Wonderer_Map_Tester_current.zip",
+  "source_sha256": "24a2172c2520f55110753b35a69a063f1933eef6a275ee6ae6d8e5ed0584da13",
+  "source_archive_local_copy_unchanged": true,
+  "renamed_png_files": 53,
+  "original_registered_assets": 41,
+  "catalog_items": 47,
+  "original_map_cells": 100,
+  "all_png_hashes_preserved": true,
+  "ground_export_before_after": {
+    "pixel_identical": true,
+    "max_channel_delta": 0,
+    "size": [
+      5122,
+      2562
+    ]
+  },
+  "scene_png_export_independent_of_visibility": true,
+  "syntax_check": "passed",
+  "model_tests": {
+    "passed": 10,
+    "failed": 0
+  },
+  "browser": {
+    "status": "passed",
+    "browser": "Chromium 153 headless",
+    "checks": [
+      "47 assets load",
+      "preserved 100-cell default",
+      "grouped drag",
+      "independent layer undo/redo",
+      "layer erase",
+      "legacy search and tooltips",
+      "folder-state restoration",
+      "PNG rendering comparison exported",
+      "unsaved sample confirmation",
+      "6 crossing overlays",
+      "separate JSON and PNG exports",
+      "export ignores visibility toggles",
+      "resize history boundary",
+      "atomic invalid import",
+      "full scene round trip",
+      "legacy key and filename migration",
+      "imported logical tile size",
+      "dynamic asset registration",
+      "path rejection",
+      "original sample reset",
+      "tray collapse",
+      "desktop/tablet/phone layouts",
+      "no page errors"
+    ]
+  },
+  "additional_browser_checks": [
+    "custom asset key survives JSON export/import",
+    "touch selection exposes selected asset details",
+    "short landscape viewport starts with palette collapsed",
+    "missing unused asset does not stop available tiles rendering",
+    "imported-scene status option cannot be selected as a sample"
+  ],
+  "viewport_sizes": [
+    [
+      1440,
+      1000
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "notes": "Real Chromium checks at desktop and mobile viewport sizes, including a touch context. No browser screenshots are included in deliverables."
+}
