@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>City Wonderer · Map tester</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div><span class="badge">CW</span><strong>City Wonderer</strong><span class="muted"> / Map tester</span></div><span class="chip">Local · Ground tiles</span></header>
+<main>
+<aside>
+ <div class="section-title">ASSETS <span id="asset-count"></span></div>
+ <div id="assets" class="asset-list"></div>
+ <button id="erase" class="wide">Erase / empty cell</button>
+ <p class="help">Select an asset, then paint on the map. Add filenames and keys in <code>config.js</code>; images go in <code>assets/</code>.</p>
+ <div class="section-title">MAP SIZE</div>
+ <div class="size-inputs"><label>Rows<input id="rows" type="number" min="1" max="64" value="5"></label><label>Columns<input id="cols" type="number" min="1" max="64" value="5"></label><button id="resize">Resize</button></div>
+ <div class="section-title">MAP ARRAY <button id="copy" class="small">Copy</button></div>
+ <textarea id="map-json" aria-label="Editable map array" spellcheck="false"></textarea>
+ <div class="pair"><button id="apply" class="primary">Apply array</button><button id="reset">Reset sample</button></div>
+ <div class="pair"><button id="export-json">Export JSON</button><button id="export-png">Export PNG</button></div>
+ <p class="help">JSON uses double quotes. Rows run down-left; columns run down-right. <code>null</code> leaves a cell empty.</p>
+ <div id="message" role="status" aria-live="polite"></div>
+</aside>
+<section class="workspace">
+ <nav><div class="group"><button id="undo" title="Ctrl/Cmd+Z">↶ Undo</button><button id="redo" title="Ctrl/Cmd+Shift+Z">↷ Redo</button></div><div class="group"><label><input type="checkbox" id="grid" checked>Grid</label><label><input type="checkbox" id="labels">Cell labels</label><label><input type="checkbox" id="smooth" checked>Smoothing</label><label><input type="checkbox" id="checker">Checker</label></div><div class="group"><button id="zoom-out" aria-label="Zoom out">−</button><output id="zoom-label">100%</output><button id="zoom-in" aria-label="Zoom in">+</button><button id="fit">Fit</button></div></nav>
+ <div id="viewport"><canvas id="canvas" aria-label="Isometric tile map"></canvas><div class="hint">Paint: drag · Pan: Space + drag / middle button · Zoom: wheel</div></div>
+ <footer><span id="stats"></span><span id="hover">—</span></footer>
+</section>
+</main>
+<script type="module" src="app.js"></script>
+</body></html>
