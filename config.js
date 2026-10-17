@@ -121,8 +121,8 @@ export const MAP = [
     "RR",
     "RR",
     "RR",
-    "RR",
-    "RR",
+    "MCTFD2",
+    "MCTFD1",
     "RR"
   ],
   [
@@ -133,8 +133,8 @@ export const MAP = [
     "RL",
     "RL",
     "RL",
-    "RL",
-    "RL",
+    "MCTED",
+    "MCTEC",
     "RL"
   ],
   [
@@ -157,8 +157,8 @@ export const MAP = [
     "RDEA",
     "G",
     "RR",
-    "MCTFA1",
-    "MCTFA1",
+    "MCTEB",
+    "MCTEA",
     "RR"
   ],
   [
@@ -169,8 +169,8 @@ export const MAP = [
     "G",
     "G",
     "RL",
-    "MCTFA1",
     "MCTFA2",
+    "MCTFA1",
     "RL"
   ]
 ];
