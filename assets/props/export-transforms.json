@@ -1,0 +1,626 @@
+{
+  "purpose": "Photoshop authoring at original large production-master size. One working scale per asset; derive all game sizes later.",
+  "input_archive": "props(1).zip",
+  "base_files_are_original_bytes": true,
+  "image_count": 6,
+  "expected_overlay_png_count": 16,
+  "overlay_compositing": "normal source-over RGBA over the corresponding off base; one selected state overlay at a time",
+  "assets": [
+    {
+      "working_base": "traffic_light_pole_facing_se_off.png",
+      "family": "compact_vehicle",
+      "facing": "se",
+      "working_canvas_px": [
+        1024,
+        1536
+      ],
+      "working_master_sha256": "8750c1e5e2b28deead40b7766a3c4dda4f47e335a443bb390093e2553e1562a5",
+      "expected_overlay_files": [
+        "traffic_light_pole_facing_se_red_overlay.png",
+        "traffic_light_pole_facing_se_amber_overlay.png",
+        "traffic_light_pole_facing_se_green_overlay.png"
+      ],
+      "overlay_canvas_must_match_working_base": true,
+      "master_path_in_input_archive": "City_Wonderer_Traffic_Light_Draft_v02/traffic_light_draft_v02/source/traffic_light_generated_master.png",
+      "existing_source_off_path_in_input_archive": "City_Wonderer_Traffic_Light_SE_States_v01/traffic_light_se_states_v01/source/traffic_light_pole_facing_se_off.png",
+      "existing_source_off_canvas_px": [
+        64,
+        144
+      ],
+      "existing_source_off_rgba_sha256": "2f9aca4d393be328706ec0e5b183490b900bd3a28182f9272abcbfc7708ed12b",
+      "existing_export_metadata": {
+        "status": "draft_not_user_approved",
+        "asset_key": "traffic_light_pole_facing_se_off",
+        "facing": "SE; front faces lower right, toward vehicles travelling NW",
+        "state": "off",
+        "height_m": 3,
+        "height_unit_m": 1,
+        "source": {
+          "canvas": [
+            64,
+            144
+          ],
+          "base_pivot_px": [
+            24.2,
+            128
+          ],
+          "vertical_px_per_m": 40
+        },
+        "runtime": {
+          "canvas": [
+            32,
+            72
+          ],
+          "base_pivot_px": [
+            12.1,
+            64
+          ],
+          "vertical_px_per_m": 20
+        },
+        "placement_example": {
+          "row": 1,
+          "col": 2,
+          "u": 0.78,
+          "v": 0.14375,
+          "curb_inset_m": 0.25
+        },
+        "ground_footprint_m": [
+          0.24,
+          0.24
+        ],
+        "notes": [
+          "Approximate art footprint; base dimensions require final user review.",
+          "Flat-ground center anchoring does not apply to this sprite.",
+          "No tester catalog/code changes. No lit states or other facings yet.",
+          "Final engine filtering and registration still require integration checks."
+        ]
+      },
+      "original_base_export_recipe": "#!/usr/bin/env bash\nset -euo pipefail\n# Run from this draft package's root directory; requires ImageMagick.\nconvert source/traffic_light_generated_master.png -channel A -level 5%,99.6% +channel -crop 339x1464+369+43 +repage -resize 29x124! -background none -gravity northwest -extent 64x144-16-8 source/traffic_light_pole_facing_se_off.png\nconvert source/traffic_light_pole_facing_se_off.png -resize 50% runtime/traffic_light_pole_facing_se_off.png\n",
+      "overlay_export_note": "Reuse the recorded geometry/crop/canvas transform for overlays. Preserve painted overlay alpha; legacy base alpha normalization is not automatically appropriate for glow layers.",
+      "painting_rule": "Only the selected lens illuminates; leave other lenses absent from overlay. For overhead lights include the matching selected lens on BOTH heads in one overlay.",
+      "asset_key": "traffic_light_pole_facing_se"
+    },
+    {
+      "working_base": "traffic_light_pole_facing_sw_off.png",
+      "family": "compact_vehicle",
+      "facing": "sw",
+      "working_canvas_px": [
+        1024,
+        1536
+      ],
+      "working_master_sha256": "5529257b21e4f59e98098943806ae05edbbb5b6f12095ad08eda3d5b8bbcd407",
+      "expected_overlay_files": [
+        "traffic_light_pole_facing_sw_red_overlay.png",
+        "traffic_light_pole_facing_sw_amber_overlay.png",
+        "traffic_light_pole_facing_sw_green_overlay.png"
+      ],
+      "overlay_canvas_must_match_working_base": true,
+      "master_path_in_input_archive": "traffic_light_sw_off_v01/production/sw_off_generated_master.png",
+      "existing_source_off_path_in_input_archive": "traffic_light_sw_states_v01/source/traffic_light_pole_facing_sw_off.png",
+      "existing_source_off_canvas_px": [
+        64,
+        144
+      ],
+      "existing_source_off_rgba_sha256": "a0cf61b90f7ec7cfdb1996f2de5a38ebadfa7e4495417925b624d021ef58e3f0",
+      "existing_export_metadata": {
+        "asset_key": "traffic_light_pole_facing_sw_off",
+        "facing": "sw",
+        "state": "off",
+        "height_m": 3,
+        "status": "draft_view_awaiting_user_approval",
+        "source": {
+          "canvas_px": [
+            64,
+            144
+          ],
+          "ground_pivot_px": [
+            24.2,
+            128
+          ],
+          "vertical_px_per_m": 40
+        },
+        "runtime": {
+          "canvas_px": [
+            32,
+            72
+          ],
+          "ground_pivot_px": [
+            12.1,
+            64
+          ],
+          "vertical_px_per_m": 20
+        },
+        "export": {
+          "method": "uniform_affine_scale_and_translate",
+          "raw_ground_contact": [
+            574,
+            1447
+          ],
+          "raw_top_y": 43,
+          "scale": 0.08547008547008547,
+          "translate": [
+            -24.859829059829064,
+            4.3247863247863165
+          ],
+          "matrix": "0.08547008547008547,0,0,0.08547008547008547,-24.859829059829064,4.3247863247863165"
+        },
+        "example_placement": {
+          "status": "proposed_for_review",
+          "ground_key": "road_4lane_straight_ne_sw_sidewalk_se",
+          "overlay_key": "crosswalk_4lane_ne_sw_half_se",
+          "tile_local": {
+            "u": 0.9,
+            "v": 0.78
+          },
+          "source_base_offset_px": [
+            30.72,
+            87.04
+          ]
+        },
+        "validation": {
+          "source_dimensions_checked": true,
+          "uniform_scale_used": true,
+          "base_registration_checked": true,
+          "visible_bounds_alpha_above_16": [
+            2,
+            7,
+            34,
+            133
+          ],
+          "no_edge_clipping_at_alpha_above_16": true
+        },
+        "prior_approval": {
+          "SE_all_four_states": "user_approved_2026-10-20T00:04:04+03:00"
+        },
+        "engine_integration": false
+      },
+      "original_base_export_recipe": "#!/usr/bin/env bash\nset -euo pipefail\n# Run from package root; requires ImageMagick.\nconvert production/sw_off_generated_master.png -channel A -level 5%,99.6% +channel -virtual-pixel transparent -define distort:viewport=64x144+0+0 -distort AffineProjection '0.08547008547008547,0,0,0.08547008547008547,-24.859829059829064,4.3247863247863165' source/traffic_light_pole_facing_sw_off.png\nconvert source/traffic_light_pole_facing_sw_off.png -resize 50% runtime/traffic_light_pole_facing_sw_off.png\n",
+      "overlay_export_note": "Reuse the recorded geometry/crop/canvas transform for overlays. Preserve painted overlay alpha; legacy base alpha normalization is not automatically appropriate for glow layers.",
+      "painting_rule": "Only the selected lens illuminates; leave other lenses absent from overlay. For overhead lights include the matching selected lens on BOTH heads in one overlay.",
+      "asset_key": "traffic_light_pole_facing_sw"
+    },
+    {
+      "working_base": "traffic_light_pedestrian_pole_facing_se_off.png",
+      "family": "pedestrian",
+      "facing": "se",
+      "working_canvas_px": [
+        1024,
+        1536
+      ],
+      "working_master_sha256": "b543a5c06200c216fa6a3508e3c1acfde2bff753251921837cd4e4c54492bf3a",
+      "expected_overlay_files": [
+        "traffic_light_pedestrian_pole_facing_se_red_overlay.png",
+        "traffic_light_pedestrian_pole_facing_se_green_overlay.png"
+      ],
+      "overlay_canvas_must_match_working_base": true,
+      "master_path_in_input_archive": "traffic_light_pedestrian_se_off_v01/production/pedestrian_se_off_generated_master.png",
+      "existing_source_off_path_in_input_archive": "traffic_light_pedestrian_se_states_v01/source/traffic_light_pedestrian_pole_facing_se_off.png",
+      "existing_source_off_canvas_px": [
+        64,
+        120
+      ],
+      "existing_source_off_rgba_sha256": "60c25c8365d123527db4af18d04d0e04dce217e6bb1e5d520e21ef4ce89d0b60",
+      "existing_export_metadata": {
+        "asset_key": "traffic_light_pedestrian_pole_facing_se_off",
+        "family": "pedestrian_traffic_light",
+        "facing": "se",
+        "state": "off",
+        "status": "draft_awaiting_user_approval",
+        "height_m": 2.4,
+        "head_design_target_m": {
+          "height": 0.8,
+          "front_width": 0.5
+        },
+        "symbols": {
+          "top": "standing_person",
+          "bottom": "walking_person",
+          "both_unlit": true
+        },
+        "source": {
+          "canvas_px": [
+            64,
+            120
+          ],
+          "ground_pivot_px": [
+            32,
+            104
+          ],
+          "vertical_px_per_m": 40
+        },
+        "runtime": {
+          "canvas_px": [
+            32,
+            60
+          ],
+          "ground_pivot_px": [
+            16,
+            52
+          ],
+          "vertical_px_per_m": 20
+        },
+        "export": {
+          "method": "uniform_affine_scale_and_translate",
+          "matrix": "0.06803685329553508,0,0,0.06803685329553508,1.0432317505315396,5.414599574769667",
+          "raw_ground_contact_px": [
+            455,
+            1449
+          ],
+          "raw_top_y": 38
+        },
+        "validation": {
+          "dimensions_checked": true,
+          "96_source_px_rise_checked": true,
+          "ground_registration_checked": true,
+          "visible_bounds_alpha_above_16": [
+            24,
+            7,
+            57,
+            109
+          ],
+          "no_edge_clipping_at_alpha_above_16": true
+        },
+        "example_placement": {
+          "status": "proposed_for_review",
+          "ground_key": "road_4lane_straight_ne_sw_sidewalk_nw",
+          "overlay_key": "crosswalk_4lane_ne_sw_half_nw",
+          "tile_local": {
+            "u": 0.1,
+            "v": 0.72
+          },
+          "source_base_offset_from_tile_center_px": [
+            -158.72,
+            -23.04
+          ],
+          "runtime_base_offset_from_tile_center_px": [
+            -79.36,
+            -11.52
+          ],
+          "faces_across_road": "se"
+        },
+        "engine_integration": false,
+        "prior_approval": {
+          "compact_vehicle_rear_views": "2026-10-20T00:36:52+03:00",
+          "pedestrian_design_brief": "2026-10-20T00:42:30+03:00"
+        }
+      },
+      "original_base_export_recipe": "#!/usr/bin/env bash\nset -euo pipefail\n# Run from package root; ImageMagick required.\nconvert production/pedestrian_se_off_generated_master.png -channel A -level 5%,99.6% +channel -virtual-pixel transparent -define distort:viewport=64x120+0+0 -distort AffineProjection 0.06803685329553508,0,0,0.06803685329553508,1.0432317505315396,5.414599574769667 source/traffic_light_pedestrian_pole_facing_se_off.png\nconvert source/traffic_light_pedestrian_pole_facing_se_off.png -resize 50% runtime/traffic_light_pedestrian_pole_facing_se_off.png\n",
+      "overlay_export_note": "Reuse the recorded geometry/crop/canvas transform for overlays. Preserve painted overlay alpha; legacy base alpha normalization is not automatically appropriate for glow layers.",
+      "painting_rule": "pedestrian red: upper standing symbol only; green: lower walking symbol only",
+      "asset_key": "traffic_light_pedestrian_pole_facing_se"
+    },
+    {
+      "working_base": "traffic_light_pedestrian_pole_facing_sw_off.png",
+      "family": "pedestrian",
+      "facing": "sw",
+      "working_canvas_px": [
+        1024,
+        1536
+      ],
+      "working_master_sha256": "57715c2ae92bd06823a46782c1058ceda9f0e736d9ae61173555693875a959c2",
+      "expected_overlay_files": [
+        "traffic_light_pedestrian_pole_facing_sw_red_overlay.png",
+        "traffic_light_pedestrian_pole_facing_sw_green_overlay.png"
+      ],
+      "overlay_canvas_must_match_working_base": true,
+      "master_path_in_input_archive": "traffic_light_pedestrian_sw_off_v01/production/pedestrian_sw_off_generated_master.png",
+      "existing_source_off_path_in_input_archive": "traffic_light_pedestrian_sw_states_v01/source/traffic_light_pedestrian_pole_facing_sw_off.png",
+      "existing_source_off_canvas_px": [
+        64,
+        120
+      ],
+      "existing_source_off_rgba_sha256": "fc655ea5cb7dc2c5490c9227104f9c889ad98bd7c0ed077acc8953edc42ab3be",
+      "existing_export_metadata": {
+        "asset_key": "traffic_light_pedestrian_pole_facing_sw_off",
+        "family": "pedestrian_traffic_light",
+        "facing": "sw",
+        "state": "off",
+        "status": "draft_awaiting_user_approval",
+        "height_m": 2.4,
+        "source": {
+          "canvas_px": [
+            64,
+            120
+          ],
+          "ground_pivot_px": [
+            32,
+            104
+          ],
+          "vertical_px_per_m": 40
+        },
+        "runtime": {
+          "canvas_px": [
+            32,
+            60
+          ],
+          "ground_pivot_px": [
+            16,
+            52
+          ],
+          "vertical_px_per_m": 20
+        },
+        "export": {
+          "method": "uniform_affine_scale_and_translate",
+          "matrix": "0.06808510638297872,0,0,0.06808510638297872,-9.736170212765956,5.344680851063828",
+          "raw_ground_contact_px": [
+            613,
+            1449
+          ],
+          "raw_top_y": 39
+        },
+        "validation": {
+          "dimensions_checked": true,
+          "96_source_px_rise_checked": true,
+          "ground_registration_checked": true,
+          "visible_bounds_alpha_above_16": [
+            7,
+            7,
+            40,
+            109
+          ],
+          "no_edge_clipping_at_alpha_above_16": true
+        },
+        "geometry_note": "Generated perspective; exact edge-angle agreement has not been certified. The user set aside the separate SE correction attempt and requested this next facing.",
+        "example_placement": {
+          "status": "proposed_for_review",
+          "ground_key": "road_4lane_straight_nw_se_sidewalk_ne",
+          "overlay_key": "crosswalk_4lane_nw_se_half_ne",
+          "tile_local": {
+            "u": 0.72,
+            "v": 0.1
+          },
+          "source_base_offset_from_tile_center_px": [
+            158.72,
+            -23.04
+          ],
+          "runtime_base_offset_from_tile_center_px": [
+            79.36,
+            -11.52
+          ],
+          "faces_across_road": "sw"
+        },
+        "engine_integration": false
+      },
+      "original_base_export_recipe": "#!/usr/bin/env bash\nset -euo pipefail\n# Run from package root; ImageMagick required.\nconvert production/pedestrian_sw_off_generated_master.png -channel A -level 5%,99.6% +channel -virtual-pixel transparent -define distort:viewport=64x120+0+0 -distort AffineProjection 0.06808510638297872,0,0,0.06808510638297872,-9.736170212765956,5.344680851063828 source/traffic_light_pedestrian_pole_facing_sw_off.png\nconvert source/traffic_light_pedestrian_pole_facing_sw_off.png -resize 50% runtime/traffic_light_pedestrian_pole_facing_sw_off.png\n",
+      "overlay_export_note": "Reuse the recorded geometry/crop/canvas transform for overlays. Preserve painted overlay alpha; legacy base alpha normalization is not automatically appropriate for glow layers.",
+      "painting_rule": "pedestrian red: upper standing symbol only; green: lower walking symbol only",
+      "asset_key": "traffic_light_pedestrian_pole_facing_sw"
+    },
+    {
+      "working_base": "traffic_light_overhead_facing_se_off.png",
+      "family": "overhead_vehicle",
+      "facing": "se",
+      "working_canvas_px": [
+        1254,
+        1254
+      ],
+      "working_master_sha256": "b888fc1d8a5477407463dd343aa6ff0a455f8087806f508d9f4d375b2de6871b",
+      "expected_overlay_files": [
+        "traffic_light_overhead_facing_se_red_overlay.png",
+        "traffic_light_overhead_facing_se_amber_overlay.png",
+        "traffic_light_overhead_facing_se_green_overlay.png"
+      ],
+      "overlay_canvas_must_match_working_base": true,
+      "master_path_in_input_archive": "City_Wonderer_Overhead_Traffic_Lights_All_Directions_v01/masters/traffic_light_overhead_facing_se_off_master.png",
+      "existing_source_off_path_in_input_archive": "City_Wonderer_Overhead_Traffic_Lights_All_Directions_v01/source_2x/traffic_light_overhead_facing_se_off.png",
+      "existing_source_off_canvas_px": [
+        272,
+        400
+      ],
+      "existing_source_off_rgba_sha256": "14dc8905551ac3c0efb43a8725e73f24e55ad9da8f5099671a5f40407b6abaf3",
+      "existing_export_metadata": {
+        "key": "traffic_light_overhead_facing_se_off",
+        "facing": "se",
+        "view": "front",
+        "master": {
+          "file": "masters/traffic_light_overhead_facing_se_off_master.png",
+          "canvas": [
+            1254,
+            1254
+          ],
+          "ground_anchor": [
+            1097,
+            1130
+          ],
+          "mast_joint": [
+            1097,
+            112
+          ]
+        },
+        "source": {
+          "file": "source_2x/traffic_light_overhead_facing_se_off.png",
+          "canvas": [
+            272,
+            400
+          ],
+          "ground_anchor": [
+            240,
+            372
+          ],
+          "pole_joint_vertical_rise_px": 240
+        },
+        "runtime": {
+          "file": "runtime/traffic_light_overhead_facing_se_off.png",
+          "canvas": [
+            136,
+            200
+          ],
+          "ground_anchor": [
+            120.0,
+            186.0
+          ],
+          "origin": [
+            0.8823529411764706,
+            0.93
+          ],
+          "pole_joint_vertical_rise_px": 120
+        },
+        "checked_arm_upper_edge_slope": -0.4993,
+        "checked_arm_upper_edge_angle_deg": 26.535,
+        "source_alpha_bounds": [
+          27,
+          121,
+          258,
+          386
+        ]
+      },
+      "existing_master_to_source_export": {
+        "method": "uniform resize then integer canvas placement",
+        "scale": 0.2357563850687623,
+        "resized_master_px": [
+          296,
+          296
+        ],
+        "paste_xy_px": [
+          -19,
+          106
+        ],
+        "source_canvas_px": [
+          272,
+          400
+        ],
+        "source_anchor_px": [
+          240,
+          372
+        ],
+        "runtime_canvas_px": [
+          136,
+          200
+        ],
+        "runtime_anchor_px": [
+          120.0,
+          186.0
+        ],
+        "base_preprocessing": "Legacy scaled exports zeroed alpha<8; retain overlay alpha when preparing emission edges."
+      },
+      "painting_rule": "Only the selected lens illuminates; leave other lenses absent from overlay. For overhead lights include the matching selected lens on BOTH heads in one overlay.",
+      "asset_key": "traffic_light_overhead_facing_se"
+    },
+    {
+      "working_base": "traffic_light_overhead_facing_sw_off.png",
+      "family": "overhead_vehicle",
+      "facing": "sw",
+      "working_canvas_px": [
+        1254,
+        1254
+      ],
+      "working_master_sha256": "b7cca85ac078bc0c662192c1b50435ab1aeb82a37b15b2fb69dcad1c75c8991f",
+      "expected_overlay_files": [
+        "traffic_light_overhead_facing_sw_red_overlay.png",
+        "traffic_light_overhead_facing_sw_amber_overlay.png",
+        "traffic_light_overhead_facing_sw_green_overlay.png"
+      ],
+      "overlay_canvas_must_match_working_base": true,
+      "master_path_in_input_archive": "City_Wonderer_Overhead_Traffic_Lights_All_Directions_v01/masters/traffic_light_overhead_facing_sw_off_master.png",
+      "existing_source_off_path_in_input_archive": "City_Wonderer_Overhead_Traffic_Lights_All_Directions_v01/source_2x/traffic_light_overhead_facing_sw_off.png",
+      "existing_source_off_canvas_px": [
+        272,
+        400
+      ],
+      "existing_source_off_rgba_sha256": "fe6ac7ee9b9d3d0ceaaa0af56c1c6a5e38eac634dcef0cf2396b91a64cfedec4",
+      "existing_export_metadata": {
+        "key": "traffic_light_overhead_facing_sw_off",
+        "facing": "sw",
+        "view": "front",
+        "master": {
+          "file": "masters/traffic_light_overhead_facing_sw_off_master.png",
+          "canvas": [
+            1254,
+            1254
+          ],
+          "ground_anchor": [
+            180,
+            1130
+          ],
+          "mast_joint": [
+            180,
+            122
+          ]
+        },
+        "source": {
+          "file": "source_2x/traffic_light_overhead_facing_sw_off.png",
+          "canvas": [
+            272,
+            400
+          ],
+          "ground_anchor": [
+            24,
+            372
+          ],
+          "pole_joint_vertical_rise_px": 240
+        },
+        "runtime": {
+          "file": "runtime/traffic_light_overhead_facing_sw_off.png",
+          "canvas": [
+            136,
+            200
+          ],
+          "ground_anchor": [
+            12.0,
+            186.0
+          ],
+          "origin": [
+            0.08823529411764706,
+            0.93
+          ],
+          "pole_joint_vertical_rise_px": 120
+        },
+        "checked_arm_upper_edge_slope": 0.5295,
+        "checked_arm_upper_edge_angle_deg": 27.902,
+        "source_alpha_bounds": [
+          5,
+          118,
+          229,
+          386
+        ]
+      },
+      "existing_master_to_source_export": {
+        "method": "uniform resize then integer canvas placement",
+        "scale": 0.23809523809523808,
+        "resized_master_px": [
+          299,
+          299
+        ],
+        "paste_xy_px": [
+          -19,
+          103
+        ],
+        "source_canvas_px": [
+          272,
+          400
+        ],
+        "source_anchor_px": [
+          24,
+          372
+        ],
+        "runtime_canvas_px": [
+          136,
+          200
+        ],
+        "runtime_anchor_px": [
+          12.0,
+          186.0
+        ],
+        "base_preprocessing": "Legacy scaled exports zeroed alpha<8; retain overlay alpha when preparing emission edges."
+      },
+      "painting_rule": "Only the selected lens illuminates; leave other lenses absent from overlay. For overhead lights include the matching selected lens on BOTH heads in one overlay.",
+      "asset_key": "traffic_light_overhead_facing_sw"
+    }
+  ],
+  "not_required": [
+    "NE/NW rear traffic-light views: no visible lenses/symbols to illuminate.",
+    "Road signs: non-emissive.",
+    "Streetlights: supplied diffuser is already lit; this kit is for traffic-signal state overlays. No streetlight off-state redesign performed."
+  ],
+  "naming_convention": {
+    "base": "<asset_key>_off.png",
+    "overlay": "<asset_key>_<red|amber|green>_overlay.png",
+    "family_stems": [
+      "traffic_light_pole_facing_<se|sw>",
+      "traffic_light_pedestrian_pole_facing_<se|sw>",
+      "traffic_light_overhead_facing_<se|sw>"
+    ],
+    "scale": "Working PNGs are large masters. Keep these filenames across scale folders later; no scale or version suffix inside stable asset keys.",
+    "scope": "Renames only the six working copies in this kit; original uploaded archive paths retained in metadata."
+  },
+  "integration_note": "Original generation metadata is preserved for transform traceability. Historical draft/review status text is not the current asset approval status."
+}
