@@ -1,4 +1,4 @@
-import { PROP_FAMILIES, PROP_VARIANTS, placementSlots, propGround, propRect, sortedProps, sceneBounds, propIssues, variantFor, validateProps } from './props.js';
+import { PROP_FAMILIES, PROP_VARIANTS, placementSlots, propGround, propRect, sortedProps, sceneBounds, propIssues, artworkIssue, variantFor, validateProps } from './props.js';
 import { MAP, OVERLAYS, TILE_SIZE, ASSETS } from './config.js';
 import { LEGACY_KEYS } from './catalog.js';
 import { EditorModel, prepareScene, migrateArray, descriptor, canonicalFile, keyValid, CATEGORIES, CATEGORY_LABELS, blank, clone } from './model.js';
@@ -160,6 +160,7 @@ $('export-registry').onclick=()=>jsonDownload(currentAssets(),'city-wonderer-ass
 $('export-prop-registry').onclick=()=>jsonDownload({version:1,referenceTile:{width:512,height:256},families:PROP_FAMILIES,variants:PROP_VARIANTS},'city-wonderer-prop-catalog.json');
 $('export-png').onclick=()=>{
  try{const target=$('export-target').value,keys=target==='props'?[]:target==='scene'?[...model.state.ground.flat(),...model.state.overlays.flat()]:model.cells(target).flat();
+ if(['scene','props'].includes(target)&&model.state.props.some(p=>artworkIssue(p)))throw Error('Resolve missing prop artwork before exporting PNG.');
  if(keys.some(k=>k!==null&&!assets.get(k)?.ready))throw Error('Fix missing assets before exporting.');
  const b=bounds(target),width=b.right-b.left,height=b.bottom-b.top,scale=Math.min(1,8192/width,8192/height,Math.sqrt(32000000/(width*height)));
  const out=document.createElement('canvas');out.width=Math.ceil(width*scale);out.height=Math.ceil(height*scale);const c=out.getContext('2d');c.scale(scale,scale);c.translate(-b.left,-b.top);drawWorld(c,false,target);
@@ -212,7 +213,7 @@ function syncProps(){
  if(selectedPropId&&!chosenProp())selectedPropId=null;
  const selected=chosenProp(),family=propFamily(),definition=PROP_FAMILIES[family];
  const states=definition?.states??[];const select=$('prop-state'),state=selected?.state??(states.includes(propOptions.state)?propOptions.state:states[0]);
- select.replaceChildren(...states.map(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;o.selected=s===state;return o;}));select.disabled=states.length<2;
+ select.replaceChildren(...states.map(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;o.selected=s===state;if(selected&&artworkIssue({...selected,state:s})){o.disabled=true;o.textContent=s+' (overlay pending)';}return o;}));select.disabled=states.length<2;
  $('approach-control').hidden=!['stop','one_way','vehicle'].includes(family);$('travel-control').hidden=family!=='one_way';
  $('prop-approach').value=selected?.facing??propOptions.approach;$('prop-travel').value=selected?.travel??propOptions.travel;
  $('prop-delete').disabled=!selected;$('prop-mode').textContent=propMode==='erase'?'Erase props':propMode==='select'?'Select props':'Place props';
@@ -283,7 +284,7 @@ function propsSample(){
  for(const family of ['pedestrian','overhead','vehicle','streetlight','stop','one_way'])for(const facing of ['se','sw','ne','nw']){
   const candidates=locations.flatMap(([r,c])=>placementSlots(scene,r,c,family).filter(s=>s.valid&&s.facing===facing).map(s=>({s,load:used.get(r+','+c)??0,preference:Math.abs((s.side==='ne'||s.side==='sw'?s.u:s.v)-.5)}))).sort((a,b)=>a.load-b.load||a.preference-b.preference);
   const slot=candidates[0]?.s;if(!slot)continue;const {issues,valid:okay,...p}=slot;
-  const states=PROP_FAMILIES[family].states;scene.props.push({...p,id:'sample-'+(++count),state:states[Math.min(1,states.length-1)]});const key=p.row+','+p.col;used.set(key,(used.get(key)??0)+1);
+  const states=PROP_FAMILIES[family].states;scene.props.push({...p,id:'sample-'+(++count),state:artworkIssue({...p,state:states[Math.min(1,states.length-1)]})?states[0]:states[Math.min(1,states.length-1)]});const key=p.row+','+p.col;used.set(key,(used.get(key)??0)+1);
  }
  return scene;
 }

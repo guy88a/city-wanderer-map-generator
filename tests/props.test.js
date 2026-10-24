@@ -160,3 +160,27 @@ test('entry profiles preserve manual approach choices and reject missing one-way
  }
  const slots=placementSlots(s,0,0,'one_way',{travel:'sw'});assert.ok(slots.length);assert.ok(slots.every(p=>p.facing==='se'&&p.travel==='sw'&&!p.valid&&p.issues.some(x=>x.startsWith('Missing'))));
 });
+
+
+test('corrected overhead sprites use new arm extensions and anchors at both scales',()=>{
+ const sw=PROP_VARIANTS.overhead_sw,ne=PROP_VARIANTS.overhead_ne;
+ assert.deepEqual(sw.anchor,[240,372]);assert.deepEqual(ne.anchor,[32,372]);assert.equal(sw.armExtension,'nw');assert.equal(ne.armExtension,'se');
+ for(const facing of ['sw','ne']){const p={...instance(scene(),'overhead'),facing};const full=propRect(p,{width:512,height:256}),half=propRect(p,{width:256,height:128});for(const k of Object.keys(full))assert.equal(half[k],full[k]/2);}
+});
+test('corrected SW states place and update on the SE pavement with independent undo',()=>{
+ const m=new EditorModel(scene('road_2lane_straight_ne_sw'));
+ for(const state of ['off','red','amber','green']){
+  const slots=placementSlots(m.state,0,0,'overhead',{state}).filter(p=>p.facing==='sw');assert.ok(slots.length);assert.ok(slots.every(p=>p.valid));
+ }
+ const p=placementSlots(m.state,0,0,'overhead').find(p=>p.facing==='sw'&&p.valid);m.addProp({...p,id:'sw'});m.layer='props';
+ for(const state of ['red','amber','green']){m.updateProp('sw',{state});assert.equal(m.state.props[0].state,state);assert.deepEqual(propIssues(m.state,m.state.props[0]),[]);}
+ m.undo();assert.equal(m.state.props[0].state,'amber');m.redo();assert.equal(m.state.props[0].state,'green');
+});
+test('imported SW colored states remain valid; NE rear logical states still work',()=>{
+ const s=scene('road_2lane_straight_ne_sw'),p=placementSlots(s,0,0,'overhead').find(p=>p.facing==='sw'&&p.valid);s.props=[{...p,id:'imported',state:'green'}];const imported=prepareScene(s);assert.equal(imported.props[0].state,'green');assert.deepEqual(propIssues(imported,imported.props[0]),[]);
+ const ne=placementSlots(s,0,0,'overhead',{state:'green'}).find(p=>p.facing==='ne'&&p.valid);assert.ok(ne);assert.equal(ne.state,'green');
+});
+test('registered SW overlays illuminate both new heads using the original painted colors',()=>{
+ const registration=JSON.parse(readFileSync(new URL('../assets/props/sw-state-registration.json',import.meta.url)));
+ for(const [state,color]of [['red',[255,87,25]],['amber',[255,159,5]],['green',[109,255,109]]]){const r=registration.states[state];assert.deepEqual(r.color,color);assert.equal(r.heads.length,2);assert.ok(r.heads.every(h=>h.glass_pixels>400));assert.ok(PROP_VARIANTS.overhead_sw.overlays[state]);}
+});

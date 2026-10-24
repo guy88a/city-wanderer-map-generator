@@ -1,8 +1,8 @@
 {
-  "version": "4.0.4",
+  "version": "4.0.6",
   "status": "passed for syntax, regression and DOM/native-canvas checks",
-  "source_archive": "City_Wonderer_Map_Tester_1.2_latest(2).zip",
-  "source_sha256": "7af09ae8fa7de14bf9f2e0dff4e8735ddd6dd1e75d970eed1cfdf58d63933303",
+  "source_archive": "City_Wonderer_Map_Tester_1.3_latest.zip",
+  "source_sha256": "b71b22c4bd4d9ffd95978aeb33a6d5692753e31f056c5ba4c7c349b3d8ecd2e0",
   "preserved_ground_pngs": 53,
   "ground_catalog_items": 47,
   "default_map_dimensions": [
@@ -19,7 +19,7 @@
   ],
   "syntax_check": "passed",
   "regression_tests": {
-    "passed": 34,
+    "passed": 38,
     "failed": 0
   },
   "dom_native_canvas_integration": {
@@ -41,7 +41,8 @@
       "props-only JSON import and undo",
       "scene and props PNG exports",
       "missing one-way arrow blocking",
-      "reported entry corners placed with correct defaults through scene import, palette and canvas handlers"
+      "reported entry corners placed with correct defaults through scene import, palette and canvas handlers",
+      "SW red placement on SE pavement; enabled states; both scales; six PNG exports; colored JSON round trip"
     ]
   },
   "visual_render_review": "full-scene and transparent props-only canvas output reviewed",
@@ -58,5 +59,20 @@
     "artwork_and_unrelated_production_editor_files_byte_identical": true,
     "catalog_changes": "Only three road_prop_approaches metadata entries"
   },
-  "deferred_issue": "Overhead arm projection artwork on NW/SE pavement remains pending; no artwork changed."
+  "deferred_issue": "Generated overhead arm angles remain slightly steeper than ideal; artwork geometry unchanged in this update.",
+  "overlay_integration": {
+    "sw_available_states": [
+      "off",
+      "red",
+      "amber",
+      "green"
+    ],
+    "both_heads_registered": true,
+    "source_and_runtime_overlays_updated": 6,
+    "other_assets_byte_identical": true,
+    "config_js_sha256": "c8ac8583c648c8b2f519cf53ccea91604d15440358e4ac12b9d305c5ea5311b1",
+    "uploaded_default_map_byte_identical": true,
+    "props_js_placement_rules_byte_identical": true,
+    "bodies_and_anchors_preserved": true
+  }
 }

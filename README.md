@@ -1,4 +1,4 @@
-# City Wonderer — Map Studio v4.0.4
+# City Wonderer — Map Studio v4.0.6
 
 The original ground/markings tester, extended with individual street-prop placement. The default remains your unchanged 10 × 10 city. Ground artwork is preserved byte for byte.
 
@@ -63,7 +63,7 @@ Use **Export ground / markings catalog** for the existing tile registry, and **E
 
 ## Included assets
 
-All six prop families have SE, SW, NE and NW artwork: **24 body sprites**. The six front-facing traffic-light bodies have **16 transparent state overlays**. Both `assets/props/source_2x` and `assets/props/runtime` contain the same 40 filenames at their respective scales.
+All six prop families have SE, SW, NE and NW artwork: **24 body sprites**. There are **16 active transparent state overlays**, including the three realigned SW overhead states. Both scale folders retain the corresponding filenames.
 
 Bodies use the approved original source exports and anchors. Your large painted overlays were reduced with their bodies' original crop/affine/canvas transforms, preserving overlay alpha. `assets/props/export-transforms.json` records those transforms. Large production masters remain in your original asset packages; this tester ships the two rendering scales.
 
@@ -76,7 +76,7 @@ npm run check
 npm test
 ```
 
-The 34 regression tests cover original artwork hashes and map migration, layer histories, slot footprints, crossings, state persistence, missing-art blocking, import validation, collision handling, scale and tall-sprite bounds. A DOM/native-canvas integration harness is included under `tools/`; see `tools/README.md`. It executes the actual editor handlers and renderer. It is not a browser layout or accessibility audit.
+The 38 regression tests cover original artwork hashes and map migration, layer histories, slot footprints, crossings, state persistence, missing-art blocking, import validation, collision handling, scale and tall-sprite bounds. A DOM/native-canvas integration harness is included under `tools/`; see `tools/README.md`. It executes the actual editor handlers and renderer. It is not a browser layout or accessibility audit.
 
 ## v4.0.1 facing fixes
 
@@ -99,3 +99,17 @@ Re-place affected existing props to use the corrected automatic facing. Overhead
 The 4↔2-lane NE entry half and four-lane NE/SE entry corner now default their east-corner road props to SE. The four-lane SE/SW entry corner defaults its south-corner road props to SW. These incoming-traffic approaches are defined in their road profiles, independent of nearest asphalt and candidate-edge tags. Matching one-way defaults use the available arrow artwork; explicit choices and missing-art checks remain in force. All other placements match v4.0.3.
 
 Re-place affected existing props to apply the corrected defaults. Overhead-arm artwork remains a separate pending task.
+
+## v4.0.5 — corrected overhead artwork
+
+The corrected NE and SW off-state bodies are installed at both scales, with updated anchors: source NE (32,372), SW (240,372); runtime anchors are half those coordinates. NE heads face NE with the arm extending SE; SW heads face SW with the arm extending NW. Placement and facing rules are unchanged. Existing instances automatically use the new bodies and anchors.
+
+SW currently supports OFF only. Its old red/amber/green overlays are unregistered; the selected prop's pending options are disabled, placement previews flag unavailable colored states, and imported colored SW states remain recorded with a warning. Switch them to off to export PNG. Scene JSON remains available. NE rear views keep logical states without visible lenses as before.
+
+The sample uses SW off. New geometry/export details are in `assets/props/overhead-remake-v01.json`; these supersede the historical SW/NE body transforms. Generated arm angles remain approximately 28.6–28.7° rather than exact 26.565°.
+
+## v4.0.6 — SW overhead states restored
+
+Red, amber and green now work on the corrected SW overhead body, including SE-pavement placement. Both heads illuminate together. The original painted emission colors were fitted to the visible glass on the new master, then exported with the corrected body’s exact scale/canvas registration. Both source and half-size runtime overlays are included. State switching, undo/redo, scene imports and PNG exports are enabled again.
+
+This build uses the uploaded `City_Wonderer_Map_Tester_1.3_latest.zip` as its baseline. Its config.js, default map, signal bodies, anchors, placement and facing rules are preserved byte for byte. No re-placement is needed for existing SW lights; saved colored states work again. Registration data is in `assets/props/sw-state-registration.json`.

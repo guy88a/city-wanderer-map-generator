@@ -1,0 +1,140 @@
+{
+  "method": "Original user-painted emission colors re-registered to colored glass on corrected master; no body changes.",
+  "states": {
+    "red": {
+      "color": [
+        255,
+        87,
+        25
+      ],
+      "heads": [
+        {
+          "window": [
+            100,
+            222,
+            180,
+            275
+          ],
+          "glass_pixels": 515
+        },
+        {
+          "window": [
+            445,
+            410,
+            510,
+            452
+          ],
+          "glass_pixels": 546
+        }
+      ],
+      "source_canvas": [
+        272,
+        400
+      ],
+      "runtime_canvas": [
+        136,
+        200
+      ],
+      "master_to_source": {
+        "resize": [
+          299,
+          427
+        ],
+        "paste": [
+          -12,
+          -26
+        ]
+      }
+    },
+    "amber": {
+      "color": [
+        255,
+        159,
+        5
+      ],
+      "heads": [
+        {
+          "window": [
+            100,
+            278,
+            180,
+            321
+          ],
+          "glass_pixels": 625
+        },
+        {
+          "window": [
+            445,
+            468,
+            510,
+            503
+          ],
+          "glass_pixels": 644
+        }
+      ],
+      "source_canvas": [
+        272,
+        400
+      ],
+      "runtime_canvas": [
+        136,
+        200
+      ],
+      "master_to_source": {
+        "resize": [
+          299,
+          427
+        ],
+        "paste": [
+          -12,
+          -26
+        ]
+      }
+    },
+    "green": {
+      "color": [
+        109,
+        255,
+        109
+      ],
+      "heads": [
+        {
+          "window": [
+            100,
+            330,
+            180,
+            363
+          ],
+          "glass_pixels": 632
+        },
+        {
+          "window": [
+            445,
+            520,
+            510,
+            566
+          ],
+          "glass_pixels": 685
+        }
+      ],
+      "source_canvas": [
+        272,
+        400
+      ],
+      "runtime_canvas": [
+        136,
+        200
+      ],
+      "master_to_source": {
+        "resize": [
+          299,
+          427
+        ],
+        "paste": [
+          -12,
+          -26
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "family": "overhead_vehicle_traffic_light",
+  "status": "generated_off_state_candidates_for_visual_review",
+  "nominal_mast_joint_height_m": 6,
+  "sprites": [
+    {
+      "key": "traffic_light_overhead_facing_sw_off",
+      "facing": "sw",
+      "arm_extension": "nw",
+      "view": "front",
+      "state": "off",
+      "master": {
+        "file": "masters/traffic_light_overhead_facing_sw_off_master.png",
+        "canvas": [
+          1049,
+          1499
+        ],
+        "ground_anchor": [
+          884,
+          1395
+        ],
+        "mast_joint": [
+          884,
+          553
+        ]
+      },
+      "source": {
+        "file": "source_2x/traffic_light_overhead_facing_sw_off.png",
+        "canvas": [
+          272,
+          400
+        ],
+        "ground_anchor": [
+          240,
+          372
+        ],
+        "vertical_px_per_m": 40
+      },
+      "runtime": {
+        "file": "runtime/traffic_light_overhead_facing_sw_off.png",
+        "canvas": [
+          136,
+          200
+        ],
+        "ground_anchor": [
+          120.0,
+          186.0
+        ],
+        "vertical_px_per_m": 20
+      },
+      "export": {
+        "uniform_scale": 0.2850356294536817,
+        "resized_canvas": [
+          299,
+          427
+        ],
+        "paste": [
+          -12,
+          -26
+        ]
+      },
+      "validation": {
+        "measured_arm_upper_edge_slope": 0.5479011665288875,
+        "measured_arm_angle_deg": 28.718386167549102,
+        "ideal_isometric_angle_deg": 26.565051177,
+        "alpha_above_8_bounds": [
+          13,
+          11,
+          263,
+          385
+        ],
+        "state_overlays_complete": false
+      }
+    },
+    {
+      "key": "traffic_light_overhead_facing_ne_off",
+      "facing": "ne",
+      "arm_extension": "se",
+      "view": "rear",
+      "state": "off",
+      "master": {
+        "file": "masters/traffic_light_overhead_facing_ne_off_master.png",
+        "canvas": [
+          1049,
+          1499
+        ],
+        "ground_anchor": [
+          155,
+          1385
+        ],
+        "mast_joint": [
+          155,
+          545
+        ]
+      },
+      "source": {
+        "file": "source_2x/traffic_light_overhead_facing_ne_off.png",
+        "canvas": [
+          272,
+          400
+        ],
+        "ground_anchor": [
+          32,
+          372
+        ],
+        "vertical_px_per_m": 40
+      },
+      "runtime": {
+        "file": "runtime/traffic_light_overhead_facing_ne_off.png",
+        "canvas": [
+          136,
+          200
+        ],
+        "ground_anchor": [
+          16.0,
+          186.0
+        ],
+        "vertical_px_per_m": 20
+      },
+      "export": {
+        "uniform_scale": 0.2857142857142857,
+        "resized_canvas": [
+          300,
+          428
+        ],
+        "paste": [
+          -12,
+          -24
+        ]
+      },
+      "validation": {
+        "measured_arm_upper_edge_slope": 0.5453214187300706,
+        "measured_arm_angle_deg": 28.604580741220484,
+        "ideal_isometric_angle_deg": 26.565051177,
+        "alpha_above_8_bounds": [
+          11,
+          116,
+          259,
+          386
+        ],
+        "state_overlays_complete": true
+      }
+    }
+  ],
+  "notes": [
+    "Head-facing direction is preserved; arm extensions are corrected.",
+    "No map tester or existing assets were overwritten.",
+    "Anchor coordinates are visually registered, not surveyed 3D measurements.",
+    "Generated arm angles are approximately 28.6\u201328.7 degrees, rather than exact 26.565-degree 2:1 axes.",
+    "SW red/amber/green overlays have NOT been realigned and old overlays must not be used on these new heads.",
+    "NE shows the rear and needs no visible light overlay.",
+    "Source/runtime exports preserve generated alpha and use uniform scaling only."
+  ]
+}

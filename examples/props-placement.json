@@ -72,7 +72,7 @@
       "v": 0.5,
       "side": "se",
       "facing": "sw",
-      "state": "red"
+      "state": "off"
     },
     {
       "id": "sample-7",

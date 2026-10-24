@@ -94,6 +94,7 @@ export function crossingIssue(scene,row,col){
 export function variantFor(prop){return PROP_VARIANTS[prop.family+'_'+prop.facing];}
 export function artworkIssue(prop){
  const v=variantFor(prop);if(!v)return 'Missing artwork for this facing.';
+ if(v.availableStates&&!v.availableStates.includes(prop.state))return `Missing ${prop.facing.toUpperCase()} overhead ${prop.state} overlay. The corrected body currently supports off only.`;
  if(prop.family==='one_way'){
   const permitted=['ne','sw'].includes(prop.facing)?['nw','se']:['ne','sw'];
   if(!permitted.includes(prop.travel))return 'Choose travel along the sign plate axis.';

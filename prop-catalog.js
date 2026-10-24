@@ -164,7 +164,7 @@ export const PROP_VARIANTS = {
       400
     ],
     "anchor": [
-      24,
+      240,
       372
     ],
     "overlays": {
@@ -174,7 +174,14 @@ export const PROP_VARIANTS = {
     },
     "family": "overhead",
     "facing": "sw",
-    "rear": false
+    "rear": false,
+    "armExtension": "nw",
+    "availableStates": [
+      "off",
+      "red",
+      "amber",
+      "green"
+    ]
   },
   "overhead_ne": {
     "file": "props/source_2x/traffic_light_overhead_facing_ne_off.png",
@@ -184,13 +191,14 @@ export const PROP_VARIANTS = {
       400
     ],
     "anchor": [
-      240,
+      32,
       372
     ],
     "overlays": {},
     "family": "overhead",
     "facing": "ne",
-    "rear": true
+    "rear": true,
+    "armExtension": "se"
   },
   "overhead_nw": {
     "file": "props/source_2x/traffic_light_overhead_facing_nw_off.png",

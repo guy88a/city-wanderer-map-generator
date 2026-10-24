@@ -57,4 +57,26 @@ for(let row=0;row<entries.length;row++){
  assert.equal(window.mapStudio.getScene().props.at(-1).facing,entries[row][1]);
 }
 console.log('Reported entry corners: PASS via scene import, automatic palette selection and canvas placement.');
+// Corrected SW overlays work through the real placement, state and export controls.
+$('export-target').value='scene';$('export-json').click();
+const swScene=prepareScene([['road_2lane_straight_ne_sw']]);
+await $('json-file').onchange({target:{files:[{text:async()=>JSON.stringify(swScene)}],value:'x'}});
+document.querySelector('[data-key="overhead"]').click();clickWorld(0,0);
+$('prop-state').value='red';$('prop-state').onchange();
+const swSlot=window.mapStudio.getSlots().find(p=>p.valid&&p.facing==='sw');assert.ok(swSlot);const swPoint=propGround(swSlot,{width:512,height:256});clickWorld(swPoint.x,swPoint.y);
+assert.equal(window.mapStudio.getScene().props[0].state,'red');
+$('prop-instance').value=window.mapStudio.getScene().props[0].id;$('prop-instance').onchange();
+for(const state of ['red','amber','green'])assert.ok(![...$('prop-state').options].find(o=>o.value===state).disabled);
+for(const width of [512,256]){
+ $('tile-scale').value=String(width);$('tile-scale').onchange();
+ for(const state of ['red','amber','green']){
+  $('prop-state').value=state;$('prop-state').onchange();assert.equal(window.mapStudio.getScene().props[0].state,state);assert.equal($('prop-warning').textContent,'');
+  $('export-target').value='props';const before=downloads.length;$('export-png').click();assert.equal(downloads.length,before+1);
+  writeFileSync(out+'/sw-'+state+'-'+width+'.png',Buffer.from(await downloads.at(-1).blob.arrayBuffer()));
+ }
+}
+$('export-target').value='scene';$('export-json').click();const restored=window.mapStudio.getScene();
+await $('json-file').onchange({target:{files:[{text:async()=>JSON.stringify(restored)}],value:'x'}});
+assert.equal(window.mapStudio.getScene().props[0].state,'green');assert.equal($('prop-warning').textContent,'');
+console.log('Corrected SW overlays: PASS · red placement, all state options, both scales, six PNG exports and JSON round trip.');
 console.log('DOM/native-canvas integration: PASS · 24 sample views, placement, states, undo, ground warnings, both scales, JSON round trip, scene/props PNG, missing-arrow blocking.');process.exit(0);
