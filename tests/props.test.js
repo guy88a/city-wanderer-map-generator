@@ -92,6 +92,7 @@ test('crossroad vehicle lights follow right-hand traffic at all four diamond cor
 test('straight-road endpoint fix changes only the eight affected automatic facings',()=>{
  const baseline=JSON.parse(readFileSync(new URL('./placement-v402-baseline.json',import.meta.url)));let changed=0;
  for(const {key,family,slots:before}of baseline){
+  if(!(key==='road'||key.includes('_straight_')))continue;
   const expected=before.map(p=>{
    if(['road_2lane_straight_ne_sw','road_4lane_straight_ne_sw_sidewalk_se'].includes(key)&&['vehicle','overhead','stop','one_way'].includes(family)&&p.slotId===(family==='overhead'?'ne-65-925':'ne-45-925')){changed++;return {...p,facing:'sw'};}
    return p;
@@ -122,4 +123,40 @@ test('every physical sidewalk on every straight-road profile has a uniform autom
   const s=scene(key),slots=placementSlots(s,0,0,family);assert.ok(slots.length>5);
   for(const p of slots){assert.equal(p.facing,expected(p),key+'/'+family+'/'+p.slotId);assert.ok(p.valid);}
  }
+});
+
+
+test('entry road profiles select the correct incoming traffic approach at the reported corners',()=>{
+ const cases=[['road_4lane_to_2lane_t_branch_ne_entry',p=>p.u>.5&&p.v<.5,'se'],['road_4lane_junction_entry_corner_ne_se',p=>p.u>.5&&p.v<.5,'se'],['road_4lane_junction_entry_corner_se_sw',p=>p.u>.5&&p.v>.5,'sw']];
+ let count=0;
+ for(const [key,isCorner,facing]of cases)for(const family of ['vehicle','overhead','stop','one_way']){
+  const s=scene(key),slots=placementSlots(s,0,0,family).filter(isCorner);
+  if(family!=='overhead'||key!=='road_4lane_to_2lane_t_branch_ne_entry')assert.ok(slots.length,key+'/'+family);
+  for(const p of slots){assert.equal(p.facing,facing);assert.ok(p.valid);assert.deepEqual(propIssues(s,p),[]);count++;
+   const m=new EditorModel(s);m.addProp({...p,id:'entry'});assert.equal(prepareScene(m.export()).props[0].facing,facing);
+  }
+ }
+ assert.equal(count,11);
+});
+test('junction correction preserves all v4.0.3 placement data except the eleven intended facings and matching one-way arrows',()=>{
+ const baseline=JSON.parse(readFileSync(new URL('./placement-v403-baseline.json',import.meta.url)));let count=0;
+ for(const {key,family,slots:before}of baseline){
+  const expected=before.map(p=>{
+   if(!['vehicle','overhead','stop','one_way'].includes(family))return p;
+   let facing;
+   if(['road_4lane_to_2lane_t_branch_ne_entry','road_4lane_junction_entry_corner_ne_se'].includes(key)&&p.u>.5&&p.v<.5)facing='se';
+   if(key==='road_4lane_junction_entry_corner_se_sw'&&p.u>.5&&p.v>.5)facing='sw';
+   if(!facing)return p;
+   count++;return {...p,facing,...(family==='one_way'?{travel:facing==='se'?'ne':'se'}:{})};
+  });
+  assert.deepEqual(placementSlots(scene(key),0,0,family),expected,key+'/'+family);
+ }
+ assert.equal(count,11);
+});
+test('entry profiles preserve manual approach choices and reject missing one-way arrow artwork',()=>{
+ const s=scene('road_4lane_junction_entry_corner_ne_se');
+ for(const family of ['vehicle','stop','one_way']){
+  const slots=placementSlots(s,0,0,family,{approach:'nw',travel:'ne'});assert.ok(slots.length);assert.ok(slots.every(p=>p.facing==='nw'));
+ }
+ const slots=placementSlots(s,0,0,'one_way',{travel:'sw'});assert.ok(slots.length);assert.ok(slots.every(p=>p.facing==='se'&&p.travel==='sw'&&!p.valid&&p.issues.some(x=>x.startsWith('Missing'))));
 });

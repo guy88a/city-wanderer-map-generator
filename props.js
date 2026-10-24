@@ -67,6 +67,10 @@ function straightRoadPavement(key,slot){
 const approachByPavement={nw:'ne',se:'sw',ne:'se',sw:'nw'};
 function automaticFacing(key,slot,family){
  if(['vehicle','overhead','stop','one_way'].includes(family)){
+  // Junction approaches belong to the road topology, not candidate-edge tags.
+  const corner=slot.u<.5?(slot.v<.5?'north':'west'):(slot.v<.5?'east':'south');
+  const approach=ASSETS[key]?.road_prop_approaches?.[corner];
+  if(approach)return approach;
   const pavement=straightRoadPavement(key,slot);
   if(pavement)return approachByPavement[pavement];
  }

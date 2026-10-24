@@ -43,4 +43,18 @@ $('import-target').value='props';await $('json-file').onchange({target:{files:[{
 $('tile-scale').value='256';$('tile-scale').onchange();assert.equal(window.mapStudio.getScene().tileSize.width,256);writeFileSync(out+'/props-render-half.png',backing($('canvas')).toBuffer('image/png'));
 // Missing one-way artwork remains flagged and cannot be placed.
 $('asset-search').value='';$('asset-search').oninput();document.querySelector('[data-key="one_way"]').click();$('prop-approach').value='se';$('prop-approach').onchange();$('prop-travel').value='sw';$('prop-travel').onchange();clickWorld((c-r)*128,(r+c)*64);assert.ok(window.mapStudio.getSlots().some(s=>s.issues.some(x=>x.includes('Missing'))));
+// Exercise the reported entry corners through actual import/palette/canvas handlers.
+$('export-target').value='scene';$('export-json').click();
+const {prepareScene}=await import('../model.js');
+const entries=[['road_4lane_to_2lane_t_branch_ne_entry','se'],['road_4lane_junction_entry_corner_ne_se','se'],['road_4lane_junction_entry_corner_se_sw','sw']];
+const entryScene=prepareScene({ground:entries.map(([key])=>[key]),tileSize:{width:512,height:256}});
+$('import-target').value='scene';await $('json-file').onchange({target:{files:[{text:async()=>JSON.stringify(entryScene)}],value:'x'}});
+document.querySelector('[data-key="vehicle"]').click();$('prop-approach').value='auto';$('prop-approach').onchange();
+for(let row=0;row<entries.length;row++){
+ clickWorld(-row*256,row*128);
+ const slot=window.mapStudio.getSlots().find(p=>p.valid&&p.u>.5&&(row===2?p.v>.5:p.v<.5));assert.ok(slot,entries[row][0]);
+ const p=propGround(slot,{width:512,height:256});clickWorld(p.x,p.y);
+ assert.equal(window.mapStudio.getScene().props.at(-1).facing,entries[row][1]);
+}
+console.log('Reported entry corners: PASS via scene import, automatic palette selection and canvas placement.');
 console.log('DOM/native-canvas integration: PASS · 24 sample views, placement, states, undo, ground warnings, both scales, JSON round trip, scene/props PNG, missing-arrow blocking.');process.exit(0);

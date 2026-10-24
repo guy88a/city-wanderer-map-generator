@@ -1,4 +1,4 @@
-# City Wonderer — Map Studio v4.0.3
+# City Wonderer — Map Studio v4.0.4
 
 The original ground/markings tester, extended with individual street-prop placement. The default remains your unchanged 10 × 10 city. Ground artwork is preserved byte for byte.
 
@@ -76,7 +76,7 @@ npm run check
 npm test
 ```
 
-The 31 regression tests cover original artwork hashes and map migration, layer histories, slot footprints, crossings, state persistence, missing-art blocking, import validation, collision handling, scale and tall-sprite bounds. A DOM/native-canvas integration harness is included under `tools/`; see `tools/README.md`. It executes the actual editor handlers and renderer. It is not a browser layout or accessibility audit.
+The 34 regression tests cover original artwork hashes and map migration, layer histories, slot footprints, crossings, state persistence, missing-art blocking, import validation, collision handling, scale and tall-sprite bounds. A DOM/native-canvas integration harness is included under `tools/`; see `tools/README.md`. It executes the actual editor handlers and renderer. It is not a browser layout or accessibility audit.
 
 ## v4.0.1 facing fixes
 
@@ -93,3 +93,9 @@ Automatic vehicle-light, overhead-light, stop-sign and one-way-sign facing now u
 Straight-road facing now resolves the physical pavement strip from the road profile and slot coordinates. A corner candidate tagged NE can sit on the SE pavement; its candidate-edge tag no longer overrides the sidewalk's traffic direction. This fixes the east-end slot on the two-lane NE–SW straight and four-lane SE-sidewalk half for all four road-prop families. Slot coordinates and saved slot identities are unchanged. Corners, intersections, streetlights, pedestrian signals, explicit approach choices and artwork are preserved.
 
 Re-place affected existing props to use the corrected automatic facing. Overhead-arm artwork still needs separate correction so the arm projects over the road with the desired signal facing; that artwork task is deliberately deferred from this release.
+
+## v4.0.4 — entry-corner traffic approaches
+
+The 4↔2-lane NE entry half and four-lane NE/SE entry corner now default their east-corner road props to SE. The four-lane SE/SW entry corner defaults its south-corner road props to SW. These incoming-traffic approaches are defined in their road profiles, independent of nearest asphalt and candidate-edge tags. Matching one-way defaults use the available arrow artwork; explicit choices and missing-art checks remain in force. All other placements match v4.0.3.
+
+Re-place affected existing props to apply the corrected defaults. Overhead-arm artwork remains a separate pending task.

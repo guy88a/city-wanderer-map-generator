@@ -1,5 +1,5 @@
 {
-  "version": "4.0.3",
+  "version": "4.0.4",
   "status": "passed for syntax, regression and DOM/native-canvas checks",
   "source_archive": "City_Wonderer_Map_Tester_1.2_latest(2).zip",
   "source_sha256": "7af09ae8fa7de14bf9f2e0dff4e8735ddd6dd1e75d970eed1cfdf58d63933303",
@@ -19,7 +19,7 @@
   ],
   "syntax_check": "passed",
   "regression_tests": {
-    "passed": 31,
+    "passed": 34,
     "failed": 0
   },
   "dom_native_canvas_integration": {
@@ -40,7 +40,8 @@
       "scene JSON export and import",
       "props-only JSON import and undo",
       "scene and props PNG exports",
-      "missing one-way arrow blocking"
+      "missing one-way arrow blocking",
+      "reported entry corners placed with correct defaults through scene import, palette and canvas handlers"
     ]
   },
   "visual_render_review": "full-scene and transparent props-only canvas output reviewed",
@@ -49,12 +50,13 @@
     "reason": "Local browser executable unavailable; remote browser could not reach the local server. DOM/canvas integration is not a browser layout audit."
   },
   "facing_fix_regression": {
-    "comparison_version": "4.0.2",
-    "changed_automatic_facings": 8,
-    "scope": "East-end SE-pavement slot on two-lane NE-SW straight and four-lane SE half, for vehicle/overhead/stop/one_way",
-    "all_other_placement_records_preserved": true,
-    "straight_road_pavement_facing_uniformity": "passed for all six profiles, all slots, all four road-prop families",
-    "production_artwork_and_unrelated_editor_files_byte_identical": true
+    "comparison_version": "4.0.3",
+    "changed_automatic_facings": 11,
+    "scope": "Reported east/south entry corners on the three specified ground profiles",
+    "matching_one_way_auto_arrows_updated": true,
+    "every_other_placement_record_preserved": true,
+    "artwork_and_unrelated_production_editor_files_byte_identical": true,
+    "catalog_changes": "Only three road_prop_approaches metadata entries"
   },
   "deferred_issue": "Overhead arm projection artwork on NW/SE pavement remains pending; no artwork changed."
 }

@@ -65,3 +65,7 @@ For road props, reversed automatic SW facings on the NW border become NE, and re
 ### Straight-road pavement ownership
 
 For straight roads, a slot's candidate-edge tag is not its physical sidewalk ownership. Two-lane profiles use the road axis and slot UV position to select the sidewalk; four-lane halves use their explicit `sidewalk` metadata. Automatic road-prop facing is then selected from that sidewalk, consistently through both endpoints. The recorded candidate ID, coordinates and side remain unchanged for scene compatibility. Non-straight-road rules and manual approach selection are preserved.
+
+### Junction entry approaches
+
+Ground profiles can define `road_prop_approaches` by physical diamond vertex (`north`, `east`, `south`, `west`). The resolver uses slot UV coordinates to select the vertex and applies the profile's incoming-traffic direction to vehicle lights, overhead lights and road signs. This road-topology information precedes geometric guesses. It does not affect streetlights or pedestrian signals, and explicit approach choices still override defaults. Each corrected profile defines only its reported corner.

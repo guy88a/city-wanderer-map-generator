@@ -266,6 +266,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_to_2lane_t_branch_ne_entry": {
+    "road_prop_approaches": {"east": "se"},
     "label": "4↔2-lane T · branch NE · entry half",
     "category": "ground/roads/4lane",
     "layer": "ground",
@@ -358,6 +359,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_entry_corner_ne_se": {
+    "road_prop_approaches": {"east": "se"},
     "label": "4-lane junction · entry · corner NE/SE",
     "category": "ground/roads/4lane",
     "layer": "ground",
@@ -394,6 +396,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_entry_corner_se_sw": {
+    "road_prop_approaches": {"south": "sw"},
     "label": "4-lane junction · entry · corner SE/SW",
     "category": "ground/roads/4lane",
     "layer": "ground",
