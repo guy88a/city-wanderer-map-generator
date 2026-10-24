@@ -14,15 +14,18 @@ master=np.asarray(Image.open(ROOT/'junction_material_master.png').convert('RGB')
 A=load(ROOT/'references/main_a_material.png');B=load(ROOT/'references/main_b_material.png')
 S=load(ROOT/'references/straight_material.png');P=load(ROOT/'references/pavement_material.png')
 AB=np.concatenate([A,B],0)
+repaired={f:np.asarray(Image.open(ROOT/f'junction_canonical_{"nw" if f in ["nw","ne"]else "se"}_repaired.png').convert('RGB'))for f in ['nw','ne','se','sw']}
 def sample(t,u,v):
  h,w=t.shape[:2];sx=np.clip(u*w-.5,0,w-1);sy=np.clip(v*h-.5,0,h-1)
  return np.stack([map_coordinates(t[:,:,c],[sy,sx],order=1,mode='nearest')for c in range(3)],-1)
-def canonical(gx,gy):
- rgb=sample(master,gx/2,gy/2)
- rgb=np.where((gx<0)[:,:,None],sample(AB,np.mod(gx,1),gy/2),rgb)
+def canonical(gx,gy,f):
+ rgb=sample(repaired[f],gx/2,gy/2)
+ neighbor_ab=AB if f in ['nw','ne']else np.concatenate([B[::-1,::-1],A[::-1,::-1]],0)
+ rgb=np.where((gx<0)[:,:,None],sample(neighbor_ab,np.mod(gx,1),gy/2),rgb)
  rgb=np.where((gx>2)[:,:,None],sample(P,np.mod(gx,1),np.mod(gy,1)),rgb)
  outside=(gy<0)|(gy>2)
- neighbor=sample(S,np.mod(gy,1),gx-1)
+ neighbor_s=S if f in ['nw','ne']else S[::-1,::-1]
+ neighbor=sample(neighbor_s,np.mod(gy,1),gx-1)
  neighbor=np.where((gx<1)[:,:,None],sample(P,np.mod(gx,1),np.mod(gy,1)),neighbor)
  return np.where(outside[:,:,None],neighbor,rgb)
 def inverse(f,x,y):
@@ -41,7 +44,7 @@ def project(f,c,r):
  px=(sx+.5)/ss-1;py=(sy+.5)/ss-1
  u=(py/128+(px-256)/256)/2;v=(py/128-(px-256)/256)/2
  gx,gy=inverse(f,c+u,r+v)
- rgb=canonical(gx,gy).reshape(h,ss,w,ss,3).mean((1,3))
+ rgb=canonical(gx,gy,f).reshape(h,ss,w,ss,3).mean((1,3))
  im=Image.fromarray(np.clip(rgb,0,255).round().astype('uint8')).convert('RGBA')
  im.putalpha(Image.open(ROOT/'references/iso_tile_template_514_white.png').getchannel('A'))
  return im

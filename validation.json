@@ -89,5 +89,12 @@
     "browser_check": "unavailable: browser executable not installed",
     "original_images_unchanged": 186,
     "original_ground_and_overlay_defaults": "preserved"
+  },
+  "corner_repair": {
+    "version": "4.0.8",
+    "profiles": "each side uses its own native straight curb cross-section",
+    "arc": "quarter-circle between native visible curb boundaries",
+    "corner": "one paving slab and one continuous curved curb stone",
+    "validation": "40 unit tests and syntax checks; static compositions checked against actual road sprites; final user review pending"
   }
 }

@@ -121,3 +121,9 @@ All four facings of the two-lane through road with a four-lane terminating branc
 `config.js` now exports `PROPS = []`; paste exported prop instance records into that list to set the default scene's Props layer. The default ground and marking arrays remain as supplied. New junctions include pavement occupancy profiles for prop placement.
 
 For a quick isolated placement check, import `examples/junction_branch_nw.json` (or NE/SE/SW) as a full scene. Restore Current/default afterward to return to the configured city.
+
+## 4.0.8 — precise corner repair
+
+The 16 mixed T-junction tiles now use side-specific native curb profiles. Each corner's visible curb boundary is a quarter-circle with perpendicular endpoint tangents. Each curved curb is a single stone, and the pavement inside it is one slab without the former clipped sliver or leftover straight stripe. The original roads, map and default PROPS support are retained.
+
+Rebuild the repaired source surfaces with `python tools/junctions/repair_corners.py`, then project/export with `python tools/junctions/build.py`, then regenerate pavement profiles using `python tools/build-pavement-profiles.py`.
