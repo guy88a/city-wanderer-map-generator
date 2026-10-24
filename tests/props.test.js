@@ -72,3 +72,54 @@ test('shrinking crops out-of-map props only and clears all histories',()=>{
 test('changing the road axis flags retained traffic facing even where its base still fits',()=>{
  const s=scene(),p=instance(s);s.props=[p];s.ground[0][0]='road_2lane_straight_ne_sw';assert.ok(propIssues(s,p).some(x=>x.includes('Facing')||x.includes('Footprint')));
 });
+
+test('curved corner lamps follow the correct borders at both anchor-adjacent slots',()=>{
+ const cases=[['road_2lane_corner_nw_ne',{'se-65-750':'nw','sw-65-750':'ne','se-65-500':'nw','sw-65-500':'ne'}],['road_2lane_corner_nw_sw',{'ne-65-750':'sw','se-65-250':'nw','ne-65-500':'sw','se-65-500':'nw'}]];
+ for(const [key,expected]of cases){const s=scene(key),slots=placementSlots(s,0,0,'streetlight');for(const [id,facing]of Object.entries(expected)){const p=slots.find(p=>p.slotId===id);assert.ok(p?.valid,id);assert.equal(p.facing,facing);assert.deepEqual(propIssues(s,p),[]);}}
+});
+test('corner road signs retain road-facing orientation at the right anchor sibling',()=>{
+ for(const[key,id]of [['road_2lane_corner_nw_ne','se-65-750'],['road_2lane_corner_nw_sw','se-65-250']])for(const family of ['stop','one_way']){
+  const s=scene(key),p=placementSlots(s,0,0,family).find(p=>p.slotId===id);assert.ok(p?.valid);assert.equal(p.facing,'sw');
+  const m=new EditorModel(s);m.addProp({...p,id:'sign'});assert.equal(prepareScene(m.export()).props[0].facing,'sw');
+ }
+});
+test('crossroad vehicle lights follow right-hand traffic at all four diamond corners',()=>{
+ const s=scene('road_2lane_cross'),slots=placementSlots(s,0,0,'vehicle');assert.equal(slots.length,4);
+ const directions={n:'se',s:'nw',w:'ne',e:'sw'};
+ for(const p of slots){const corner=p.u<.5?(p.v<.5?'n':'w'):(p.v<.5?'e':'s');assert.equal(p.facing,directions[corner]);assert.ok(p.valid);}
+ assert.ok(placementSlots(s,0,0,'vehicle',{approach:'nw'}).every(p=>p.facing==='nw'));
+});
+test('straight-road endpoint fix changes only the eight affected automatic facings',()=>{
+ const baseline=JSON.parse(readFileSync(new URL('./placement-v402-baseline.json',import.meta.url)));let changed=0;
+ for(const {key,family,slots:before}of baseline){
+  const expected=before.map(p=>{
+   if(['road_2lane_straight_ne_sw','road_4lane_straight_ne_sw_sidewalk_se'].includes(key)&&['vehicle','overhead','stop','one_way'].includes(family)&&p.slotId===(family==='overhead'?'ne-65-925':'ne-45-925')){changed++;return {...p,facing:'sw'};}
+   return p;
+  });
+  assert.deepEqual(placementSlots(scene(key),0,0,family),expected,key+'/'+family);
+ }
+ assert.equal(changed,8);
+});
+test('two- and four-lane straight road props follow right-hand traffic on NW/SE pavement',()=>{
+ for(const key of ['road_2lane_straight_ne_sw','road_4lane_straight_ne_sw_sidewalk_nw','road_4lane_straight_ne_sw_sidewalk_se'])for(const family of ['vehicle','overhead','stop','one_way']){
+  const s=scene(key),slots=placementSlots(s,0,0,family).filter(p=>p.valid&&(p.side==='nw'||p.side==='se'));
+  assert.ok(slots.length);
+  for(const p of slots){assert.equal(p.facing,p.side==='nw'?'ne':'sw');assert.deepEqual(propIssues(s,p),[]);}
+ }
+});
+test('manual approach and one-way travel choices remain explicit overrides',()=>{
+ const s=scene('road_2lane_straight_ne_sw');
+ for(const family of ['vehicle','stop','one_way'])for(const approach of ['ne','sw']){
+  const slots=placementSlots(s,0,0,family,{approach,travel:'se'});assert.ok(slots.length);
+  assert.ok(slots.every(p=>p.facing===approach));
+  if(family==='one_way')assert.ok(slots.every(p=>p.travel==='se'));
+ }
+});
+
+test('every physical sidewalk on every straight-road profile has a uniform automatic road-prop facing, including endpoints',()=>{
+ const profiles=[['road',p=>p.v<.5?'se':'nw'],['road_2lane_straight_ne_sw',p=>p.u<.5?'ne':'sw'],['road_4lane_straight_nw_se_sidewalk_ne',()=> 'se'],['road_4lane_straight_nw_se_sidewalk_sw',()=> 'nw'],['road_4lane_straight_ne_sw_sidewalk_nw',()=> 'ne'],['road_4lane_straight_ne_sw_sidewalk_se',()=> 'sw']];
+ for(const [key,expected]of profiles)for(const family of ['vehicle','overhead','stop','one_way']){
+  const s=scene(key),slots=placementSlots(s,0,0,family);assert.ok(slots.length>5);
+  for(const p of slots){assert.equal(p.facing,expected(p),key+'/'+family+'/'+p.slotId);assert.ok(p.valid);}
+ }
+});

@@ -1,4 +1,4 @@
-# City Wonderer — Map Studio v4
+# City Wonderer — Map Studio v4.0.3
 
 The original ground/markings tester, extended with individual street-prop placement. The default remains your unchanged 10 × 10 city. Ground artwork is preserved byte for byte.
 
@@ -76,4 +76,20 @@ npm run check
 npm test
 ```
 
-The 24 regression tests cover original artwork hashes and map migration, layer histories, slot footprints, crossings, state persistence, missing-art blocking, import validation, collision handling, scale and tall-sprite bounds. A DOM/native-canvas integration harness is included under `tools/`; see `tools/README.md`. It executes the actual editor handlers and renderer. It is not a browser layout or accessibility audit.
+The 31 regression tests cover original artwork hashes and map migration, layer histories, slot footprints, crossings, state persistence, missing-art blocking, import validation, collision handling, scale and tall-sprite bounds. A DOM/native-canvas integration harness is included under `tools/`; see `tools/README.md`. It executes the actual editor handlers and renderer. It is not a browser layout or accessibility audit.
+
+## v4.0.1 facing fixes
+
+The anchor-adjacent lamp slots on NW+NE and NW+SW two-lane corners now follow their pavement borders. The right-hand sibling slot for stop and one-way signs keeps the road-facing direction. Two-lane crossroad vehicle signals use N→SE, S→NW, W→NE and E→SW. Slot positions, footprints, artwork and all other automatic facings are unchanged.
+
+Existing scene instances retain their recorded facing, including manual choices. Re-place any affected old props to use the corrected automatic facing.
+
+## v4.0.2 — right-hand traffic on NW/SE pavement borders
+
+Automatic vehicle-light, overhead-light, stop-sign and one-way-sign facing now uses NW border → NE and SE border → SW where these approaches were reversed. NE/SW-border directions, streetlights, pedestrian signals, the explicit four-corner crossroad mapping, slot positions and manual overrides retain their previous behavior. Existing instances keep their saved facing: re-place affected props to use the corrected automatic direction.
+
+## v4.0.3 — straight-road pavement ownership
+
+Straight-road facing now resolves the physical pavement strip from the road profile and slot coordinates. A corner candidate tagged NE can sit on the SE pavement; its candidate-edge tag no longer overrides the sidewalk's traffic direction. This fixes the east-end slot on the two-lane NE–SW straight and four-lane SE-sidewalk half for all four road-prop families. Slot coordinates and saved slot identities are unchanged. Corners, intersections, streetlights, pedestrian signals, explicit approach choices and artwork are preserved.
+
+Re-place affected existing props to use the corrected automatic facing. Overhead-arm artwork still needs separate correction so the arm projects over the road with the desired signal facing; that artwork task is deliberately deferred from this release.

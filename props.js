@@ -1,3 +1,4 @@
+import { ASSETS } from './catalog.js';
 import { PROP_FAMILIES, PROP_VARIANTS } from './prop-catalog.js';
 import { PROFILE_SIZE, PAVEMENT_PROFILES } from './tile-profiles.js';
 import { tileCenter } from './geometry.js';
@@ -36,6 +37,47 @@ function inwardAt(key,slot){
  }
  const result=!nearest?INWARD[slot.side]:Math.abs(nearest.du)>Math.abs(nearest.dv)?nearest.du>0?'se':'nw':nearest.dv>0?'sw':'ne';inwardCache.set(cacheKey,result);return result;
 }
+// These curved-corner slots must follow their owning border, rather than
+// an ambiguous nearest-asphalt sample near the outer corner.
+const cornerInward={
+ road_2lane_corner_nw_ne:{'se-65-750':'nw','sw-65-750':'ne'},
+ road_2lane_corner_nw_sw:{'ne-65-750':'sw','se-65-250':'nw'}
+};
+function baseAutomaticFacing(key,slot,family){
+ if(family==='vehicle'&&key==='road_2lane_cross'){
+  // Physical diamond vertices: N=(0,0), E=(1,0), S=(1,1), W=(0,1).
+  return slot.u<.5?(slot.v<.5?'se':'ne'):(slot.v<.5?'sw':'nw');
+ }
+ if(family==='streetlight'&&cornerInward[key]?.[slot.id])return cornerInward[key][slot.id];
+ if(['stop','one_way'].includes(family)&&(
+  key==='road_2lane_corner_nw_ne'&&slot.id==='se-65-750'||
+  key==='road_2lane_corner_nw_sw'&&slot.id==='se-65-250'))return 'ne';
+ const inward=inwardAt(key,slot);
+ return ['streetlight','pedestrian'].includes(family)?inward:roadFacing[inward];
+}
+// On a straight road, a corner candidate can be tagged with a transverse
+// tile edge even though it sits on the continuous sidewalk. Resolve the
+// physical pavement strip from the road profile and UV coordinates instead.
+function straightRoadPavement(key,slot){
+ const profile=ASSETS[key];
+ if(!profile?.axis||!(key==='road'||key.includes('_straight_')))return null;
+ if(profile.sidewalk)return profile.sidewalk;
+ return profile.axis==='ne_sw'?(slot.u<.5?'nw':'se'):(slot.v<.5?'ne':'sw');
+}
+const approachByPavement={nw:'ne',se:'sw',ne:'se',sw:'nw'};
+function automaticFacing(key,slot,family){
+ if(['vehicle','overhead','stop','one_way'].includes(family)){
+  const pavement=straightRoadPavement(key,slot);
+  if(pavement)return approachByPavement[pavement];
+ }
+ const facing=baseAutomaticFacing(key,slot,family);
+ // Preserve the explicitly mapped intersection vertices and all non-road props.
+ if(key==='road_2lane_cross'||!['vehicle','overhead','stop','one_way'].includes(family))return facing;
+ // Right-hand traffic: correct only the reversed NW/SE-border approaches.
+ if(slot.side==='nw'&&facing==='sw')return 'ne';
+ if(slot.side==='se'&&facing==='ne')return 'sw';
+ return facing;
+}
 export function crossingIssue(scene,row,col){
  const key=scene.ground[row]?.[col],mark=scene.overlays[row]?.[col],d=scene.assets[mark];
  if(!d||d.recommended_ground!==key)return 'Pedestrian signals require a matching crosswalk.';
@@ -69,7 +111,7 @@ function contextIssue(scene,prop){
  if(prop.family!=='streetlight'&&!d?.category?.startsWith('ground/roads/'))return 'This prop requires a road tile with pavement.';
  if(['vehicle','overhead','stop'].includes(prop.family)&&d.axis&&!d.axis.split('_').includes(prop.facing))return 'Facing no longer matches the road approach.';
  if(['streetlight','overhead','pedestrian'].includes(prop.family)&&key!=='ground_pavement'){
-  const inward=inwardAt(key,{id:prop.slotId,side:prop.side,u:prop.u,v:prop.v}),expected=prop.family==='overhead'?roadFacing[inward]:inward;
+  const expected=automaticFacing(key,{id:prop.slotId,side:prop.side,u:prop.u,v:prop.v},prop.family);
   if(prop.facing!==expected)return 'Facing no longer matches this pavement slot.';
  }
  if(prop.family==='pedestrian'){
@@ -85,7 +127,7 @@ export function placementSlots(scene,row,col,family,options={}){
  const key=scene.ground[row][col],results=[];
  for(const slot of SLOTS){
   if(!footprintFits(key,slot.u,slot.v,family))continue;
-  const inward=inwardAt(key,slot),autoFacing=['streetlight','pedestrian'].includes(family)?inward:roadFacing[inward];
+  const autoFacing=automaticFacing(key,slot,family);
   const facing=options.approach&&options.approach!=='auto'&&!['streetlight','pedestrian','overhead'].includes(family)?options.approach:autoFacing;
   const state=PROP_FAMILIES[family].states.includes(options.state)?options.state:PROP_FAMILIES[family].states[0];
   const v=PROP_VARIANTS[family+'_'+facing];

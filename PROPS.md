@@ -40,7 +40,7 @@ The slot ID and its exact recorded coordinates are validated together. A one-way
 
 `SLOTS` defines fixed candidate positions along tile edges. The resolver filters them by pavement occupancy, a conservative square base footprint, 0.08 m curb clearance, crossing compatibility and nearby prop footprints. It removes crowded duplicate candidates. Base-radius presets are editable in `PROP_FAMILIES`; these are conservative editor settings, rather than measurements from a 3D model. Larger pole heads and overhead arms may project over asphalt; their ground bases must fit on pavement.
 
-Streetlight facing follows the nearest road surface. Overhead facing also ensures the arm reaches toward the road. Compact signals and signs default to the corresponding road approach and can use an explicit approach. Pedestrian signals only use the designated positions beside correctly matched crossings. Four-lane crossings validate the neighboring half as well.
+Streetlight facing follows the nearest road surface, with explicit border directions for the ambiguous anchor-adjacent slots on NW+NE and NW+SW corners. Two-lane crossroad vehicle signals use a fixed right-hand-traffic facing for each diamond vertex. Overhead facing also ensures the arm reaches toward the road. Compact signals and signs default to the corresponding road approach and can use an explicit approach. Pedestrian signals only use the designated positions beside correctly matched crossings. Four-lane crossings validate the neighboring half as well.
 
 Ground and marking changes do not rewrite existing instance coordinates or facings. Compatibility warnings are computed from current context. An unknown/custom ground tile has no approved profile until one is added, so prop placement is disabled there.
 
@@ -57,3 +57,11 @@ One-way front variants must declare `visibleArrow`; missing front arrows must re
 ## Current limits
 
 There are no automatic traffic cycles, arrangement presets, lane routing, building occlusion or ground light pools in this version. Streetlight emission is already painted in the supplied sprite. Footprint validation covers bases and curb clearance, not every possible overlap between tall poles or overhead arms.
+
+### Right-hand-traffic border correction
+
+For road props, reversed automatic SW facings on the NW border become NE, and reversed NE facings on the SE border become SW. This adjustment follows the base resolver and is excluded for the explicitly mapped two-lane crossroad vertices. It does not apply to streetlights or pedestrian signals; explicit approach choices still override automatic selection.
+
+### Straight-road pavement ownership
+
+For straight roads, a slot's candidate-edge tag is not its physical sidewalk ownership. Two-lane profiles use the road axis and slot UV position to select the sidewalk; four-lane halves use their explicit `sidewalk` metadata. Automatic road-prop facing is then selected from that sidewalk, consistently through both endpoints. The recorded candidate ID, coordinates and side remain unchanged for scene compatibility. Non-straight-road rules and manual approach selection are preserved.
