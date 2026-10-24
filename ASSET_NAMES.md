@@ -57,3 +57,7 @@ All 53 supplied files are retained under these paths. Keys equal the default fil
 | Unregistered | `crosswalk_4lane_a_alt.png` | `ground/markings/4lane/crosswalk_4lane_ne_sw_half_nw_logical.png` |
 | Unregistered | `crosswalk_4lane_b_alt_bleed.png` | `ground/markings/4lane/crosswalk_4lane_ne_sw_half_se.png` |
 | Unregistered | `crosswalk_4lane_b_alt.png` | `ground/markings/4lane/crosswalk_4lane_ne_sw_half_se_logical.png` |
+
+## Added mixed T family
+
+`road_2lane_t_4lane_branch_{nw|ne|se|sw}_{approach|street}_{half}` names the four-lane terminating branch direction, the approach/street component and its half. These 16 single-tile assets live under `assets/ground/roads/2lane/`. The exact four-cell layout for each facing is in `examples/junction-layouts.json`.

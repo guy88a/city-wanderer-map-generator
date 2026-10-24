@@ -1,0 +1,28 @@
+{
+  "version": 4,
+  "ground": [
+    [
+      "road_2lane_t_4lane_branch_nw_approach_ne",
+      "road_2lane_t_4lane_branch_nw_street_ne"
+    ],
+    [
+      "road_2lane_t_4lane_branch_nw_approach_sw",
+      "road_2lane_t_4lane_branch_nw_street_sw"
+    ]
+  ],
+  "overlays": [
+    [
+      null,
+      null
+    ],
+    [
+      null,
+      null
+    ]
+  ],
+  "props": [],
+  "tileSize": {
+    "width": 512,
+    "height": 256
+  }
+}

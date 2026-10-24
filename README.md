@@ -113,3 +113,11 @@ The sample uses SW off. New geometry/export details are in `assets/props/overhea
 Red, amber and green now work on the corrected SW overhead body, including SE-pavement placement. Both heads illuminate together. The original painted emission colors were fitted to the visible glass on the new master, then exported with the corrected body’s exact scale/canvas registration. Both source and half-size runtime overlays are included. State switching, undo/redo, scene imports and PNG exports are enabled again.
 
 This build uses the uploaded `City_Wonderer_Map_Tester_1.3_latest.zip` as its baseline. Its config.js, default map, signal bodies, anchors, placement and facing rules are preserved byte for byte. No re-placement is needed for existing SW lights; saved colored states work again. Registration data is in `assets/props/sw-state-registration.json`.
+
+## 4.0.7 — mixed T-junctions and default Props
+
+All four facings of the two-lane through road with a four-lane terminating branch are under Ground → Roads → 2-lane. Search “4-lane branch NW”, NE, SE or SW to find a facing's four pieces. Assemble the four cells as recorded in `examples/junction-layouts.json`; all directions use a 2×2 block. See `examples/junctions_all_directions.png`. `tools/junctions/` retains the shared source master, masks, references, validation and rebuild script.
+
+`config.js` now exports `PROPS = []`; paste exported prop instance records into that list to set the default scene's Props layer. The default ground and marking arrays remain as supplied. New junctions include pavement occupancy profiles for prop placement.
+
+For a quick isolated placement check, import `examples/junction_branch_nw.json` (or NE/SE/SW) as a full scene. Restore Current/default afterward to return to the configured city.

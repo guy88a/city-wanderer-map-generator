@@ -74,5 +74,20 @@
     "uploaded_default_map_byte_identical": true,
     "props_js_placement_rules_byte_identical": true,
     "bodies_and_anchors_preserved": true
+  },
+  "junction_update": {
+    "version": "4.0.7",
+    "new_tiles": 16,
+    "directions": [
+      "nw",
+      "ne",
+      "se",
+      "sw"
+    ],
+    "default_props": "config.js PROPS list, startup and Current/default sample",
+    "tests": "40 passed; JavaScript syntax checks passed",
+    "browser_check": "unavailable: browser executable not installed",
+    "original_images_unchanged": 186,
+    "original_ground_and_overlay_defaults": "preserved"
   }
 }

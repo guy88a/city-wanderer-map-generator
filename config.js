@@ -885,3 +885,7 @@ export const OVERLAYS = [
     null
   ]
 ];
+
+// Default Props layer: a flat list of prop instances (not a rectangular grid).
+// Paste the Props array exported by the editor here. See PROPS.md for fields.
+export const PROPS = [];

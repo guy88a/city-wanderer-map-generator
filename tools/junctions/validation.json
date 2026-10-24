@@ -1,0 +1,62 @@
+{
+  "nw": {
+    "internal_edges": 4,
+    "closed_side": true,
+    "branch": "nw",
+    "tiles": [
+      [
+        "road_2lane_t_4lane_branch_nw_approach_ne",
+        "road_2lane_t_4lane_branch_nw_street_ne"
+      ],
+      [
+        "road_2lane_t_4lane_branch_nw_approach_sw",
+        "road_2lane_t_4lane_branch_nw_street_sw"
+      ]
+    ]
+  },
+  "ne": {
+    "internal_edges": 4,
+    "closed_side": true,
+    "branch": "ne",
+    "tiles": [
+      [
+        "road_2lane_t_4lane_branch_ne_approach_nw",
+        "road_2lane_t_4lane_branch_ne_approach_se"
+      ],
+      [
+        "road_2lane_t_4lane_branch_ne_street_nw",
+        "road_2lane_t_4lane_branch_ne_street_se"
+      ]
+    ]
+  },
+  "se": {
+    "internal_edges": 4,
+    "closed_side": true,
+    "branch": "se",
+    "tiles": [
+      [
+        "road_2lane_t_4lane_branch_se_street_ne",
+        "road_2lane_t_4lane_branch_se_approach_ne"
+      ],
+      [
+        "road_2lane_t_4lane_branch_se_street_sw",
+        "road_2lane_t_4lane_branch_se_approach_sw"
+      ]
+    ]
+  },
+  "sw": {
+    "internal_edges": 4,
+    "closed_side": true,
+    "branch": "sw",
+    "tiles": [
+      [
+        "road_2lane_t_4lane_branch_sw_street_nw",
+        "road_2lane_t_4lane_branch_sw_street_se"
+      ],
+      [
+        "road_2lane_t_4lane_branch_sw_approach_nw",
+        "road_2lane_t_4lane_branch_sw_approach_se"
+      ]
+    ]
+  }
+}

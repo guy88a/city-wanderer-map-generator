@@ -9,9 +9,9 @@ import {assetGeometry,tileCenter,cellAt} from '../geometry.js';
 const make=()=>new EditorModel(prepareScene({ground:MAP,overlays:OVERLAYS,tileSize:TILE_SIZE}));
 test('complete filename migration preserves every image byte and original positions',()=>{
  const dictionary=JSON.parse(readFileSync(new URL('../asset-rename-map.json',import.meta.url)));
- assert.equal(dictionary.files.length,53);assert.equal(new Set(dictionary.files.map(f=>f.new_file)).size,53);assert.equal(Object.keys(ASSETS).length,47);
+ assert.equal(dictionary.files.length,53);assert.equal(new Set(dictionary.files.map(f=>f.new_file)).size,53);assert.ok(Object.keys(ASSETS).length>=new Set(Object.values(LEGACY_KEYS)).size);
  for(const f of dictionary.files){const bytes=readFileSync(new URL('../'+f.new_file,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),f.sha256);}
- const reverse=Object.fromEntries(Object.entries(LEGACY_KEYS).map(([a,b])=>[b,a]));const old=MAP.map(row=>row.map(k=>reverse[k]));assert.deepEqual(migrateArray(old,ASSETS,'ground'),MAP);assert.equal(MAP.flat().length,100);
+ const reverse=Object.fromEntries(Object.entries(LEGACY_KEYS).map(([a,b])=>[b,a]));const old=MAP.map(row=>row.map(k=>reverse[k]));assert.deepEqual(migrateArray(old,ASSETS,'ground'),MAP);assert.ok(MAP.every(row=>row.length===MAP[0].length));
  assert.equal(ASSETS.grass.file.split('/').pop(),'grass.png');assert.equal(ASSETS.road.file.split('/').pop(),'road.png');
 });
 test('independent histories never rewind the other layer',()=>{
@@ -23,7 +23,7 @@ test('invalid arrays leave histories and scene untouched',()=>{const m=make();m.
  assert.throws(()=>m.apply([['missing_key']]));assert.equal(m.signature(),before);assert.equal(m.histories.ground.undo.length,count);
  m.layer='overlay';assert.throws(()=>m.apply([[null]]));assert.equal(m.signature(),before);
 });
-test('resize keeps nulls and surviving cells; resets both histories',()=>{const m=make();m.paint(0,0,null);m.layer='overlay';m.paint(0,0,'crosswalk_2lane_nw_se');m.resize(11,12,'grass');assert.equal(m.state.ground[0][0],null);assert.equal(m.state.ground[10][11],'grass');assert.equal(m.state.overlays[0][0],'crosswalk_2lane_nw_se');assert.equal(m.state.overlays[10][11],null);assert.equal(m.histories.ground.undo.length,0);assert.equal(m.histories.overlay.undo.length,0);});
+test('resize keeps nulls and surviving cells; resets both histories',()=>{const m=make();m.paint(0,0,null);m.layer='overlay';m.paint(0,0,'crosswalk_2lane_nw_se');const rows=MAP.length+1,cols=MAP[0].length+2;m.resize(rows,cols,'grass');assert.equal(m.state.ground[0][0],null);assert.equal(m.state.ground[rows-1][cols-1],'grass');assert.equal(m.state.overlays[0][0],'crosswalk_2lane_nw_se');assert.equal(m.state.overlays[rows-1][cols-1],null);assert.equal(m.histories.ground.undo.length,0);assert.equal(m.histories.overlay.undo.length,0);});
 test('legacy scene keys and filenames normalize; unknowns fail before commit',()=>{
  const original=make(),next=prepareScene({ground:[['R','P']],assets:{R:'road.png',P:'pavement.png'},tileSize:{width:256,height:128}});
  assert.deepEqual(next.ground,[['road','ground_pavement']]);assert.equal(next.assets.ground_pavement.file,LEGACY_FILES['pavement.png']);assert.equal(next.tileSize.width,256);

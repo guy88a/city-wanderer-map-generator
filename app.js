@@ -1,10 +1,10 @@
 import { PROP_FAMILIES, PROP_VARIANTS, placementSlots, propGround, propRect, sortedProps, sceneBounds, propIssues, artworkIssue, variantFor, validateProps } from './props.js';
-import { MAP, OVERLAYS, TILE_SIZE, ASSETS } from './config.js';
+import { MAP, OVERLAYS, PROPS, TILE_SIZE, ASSETS } from './config.js';
 import { LEGACY_KEYS } from './catalog.js';
 import { EditorModel, prepareScene, migrateArray, descriptor, canonicalFile, keyValid, CATEGORIES, CATEGORY_LABELS, blank, clone } from './model.js';
 import { assetGeometry, tileCenter, cellAt } from './geometry.js';
 const $=id=>document.getElementById(id),canvas=$('canvas'),ctx=canvas.getContext('2d'),viewport=$('viewport');
-const initial=prepareScene({ground:MAP,overlays:OVERLAYS,tileSize:TILE_SIZE},ASSETS);
+const initial=prepareScene({ground:MAP,overlays:OVERLAYS,props:PROPS,tileSize:TILE_SIZE},ASSETS);
 const model=new EditorModel(initial),assets=new Map();
 let brushes={ground:'ground_pavement',overlay:'crosswalk_2lane_nw_se',props:'vehicle'},zoom=1,pan={x:0,y:0},hover=null,space=false,gesture=null,lastCell='',cssWidth=0,cssHeight=0,dpr=1,currentSample='current',busy=false;
 let folderState=new Map(),searchActive=false,lastSuggestion='',keyEdited=false,paletteMatches=[];

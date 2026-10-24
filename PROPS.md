@@ -69,3 +69,7 @@ For straight roads, a slot's candidate-edge tag is not its physical sidewalk own
 ### Junction entry approaches
 
 Ground profiles can define `road_prop_approaches` by physical diamond vertex (`north`, `east`, `south`, `west`). The resolver uses slot UV coordinates to select the vertex and applies the profile's incoming-traffic direction to vehicle lights, overhead lights and road signs. This road-topology information precedes geometric guesses. It does not affect streetlights or pedestrian signals, and explicit approach choices still override defaults. Each corrected profile defines only its reported corner.
+
+## Default scene in config.js
+
+`PROPS` is exported alongside `MAP` and `OVERLAYS`. It is an initially empty flat list of the prop instances shown above. Paste the editor's Props array into `export const PROPS = [...]` to load those props on startup and when restoring the Current/default sample. Keep the recorded `id`, `row`, `col`, `slotId`, coordinates, side, facing, state and any `travel` fields. Rows/columns refer to `MAP`.

@@ -19,7 +19,7 @@ export const ASSETS = {
     ]
   },
   "road": {
-    "label": "2-lane straight · NW–SE",
+    "label": "2-lane straight \u00b7 NW\u2013SE",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road.png",
@@ -33,7 +33,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_straight_ne_sw": {
-    "label": "2-lane straight · NE–SW",
+    "label": "2-lane straight \u00b7 NE\u2013SW",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_straight_ne_sw.png",
@@ -47,7 +47,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_corner_nw_ne": {
-    "label": "2-lane corner · NW + NE",
+    "label": "2-lane corner \u00b7 NW + NE",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_corner_nw_ne.png",
@@ -60,7 +60,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_corner_ne_se": {
-    "label": "2-lane corner · NE + SE",
+    "label": "2-lane corner \u00b7 NE + SE",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_corner_ne_se.png",
@@ -73,7 +73,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_corner_se_sw": {
-    "label": "2-lane corner · SE + SW",
+    "label": "2-lane corner \u00b7 SE + SW",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_corner_se_sw.png",
@@ -86,7 +86,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_corner_nw_sw": {
-    "label": "2-lane corner · NW + SW",
+    "label": "2-lane corner \u00b7 NW + SW",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_corner_nw_sw.png",
@@ -114,7 +114,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_dead_end_open_nw": {
-    "label": "2-lane dead end · entrance NW",
+    "label": "2-lane dead end \u00b7 entrance NW",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_dead_end_open_nw.png",
@@ -126,7 +126,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_dead_end_open_ne": {
-    "label": "2-lane dead end · entrance NE",
+    "label": "2-lane dead end \u00b7 entrance NE",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_dead_end_open_ne.png",
@@ -138,7 +138,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_dead_end_open_se": {
-    "label": "2-lane dead end · entrance SE",
+    "label": "2-lane dead end \u00b7 entrance SE",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_dead_end_open_se.png",
@@ -150,7 +150,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_dead_end_open_sw": {
-    "label": "2-lane dead end · entrance SW",
+    "label": "2-lane dead end \u00b7 entrance SW",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_dead_end_open_sw.png",
@@ -162,7 +162,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_t_branch_ne": {
-    "label": "2-lane T · branch NE",
+    "label": "2-lane T \u00b7 branch NE",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_t_branch_ne.png",
@@ -177,7 +177,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_t_branch_se": {
-    "label": "2-lane T · branch SE",
+    "label": "2-lane T \u00b7 branch SE",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_t_branch_se.png",
@@ -192,7 +192,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_t_branch_sw": {
-    "label": "2-lane T · branch SW",
+    "label": "2-lane T \u00b7 branch SW",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_t_branch_sw.png",
@@ -207,7 +207,7 @@ export const ASSETS = {
     ]
   },
   "road_2lane_t_branch_nw": {
-    "label": "2-lane T · branch NW",
+    "label": "2-lane T \u00b7 branch NW",
     "category": "ground/roads/2lane",
     "layer": "ground",
     "file": "ground/roads/2lane/road_2lane_t_branch_nw.png",
@@ -222,7 +222,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_straight_nw_se_sidewalk_sw": {
-    "label": "4-lane straight half · NW–SE · sidewalk SW",
+    "label": "4-lane straight half \u00b7 NW\u2013SE \u00b7 sidewalk SW",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_straight_nw_se_sidewalk_sw.png",
@@ -233,7 +233,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_straight_nw_se_sidewalk_ne": {
-    "label": "4-lane straight half · NW–SE · sidewalk NE",
+    "label": "4-lane straight half \u00b7 NW\u2013SE \u00b7 sidewalk NE",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_straight_nw_se_sidewalk_ne.png",
@@ -244,7 +244,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_straight_ne_sw_sidewalk_nw": {
-    "label": "4-lane straight half · NE–SW · sidewalk NW",
+    "label": "4-lane straight half \u00b7 NE\u2013SW \u00b7 sidewalk NW",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_straight_ne_sw_sidewalk_nw.png",
@@ -255,7 +255,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_straight_ne_sw_sidewalk_se": {
-    "label": "4-lane straight half · NE–SW · sidewalk SE",
+    "label": "4-lane straight half \u00b7 NE\u2013SW \u00b7 sidewalk SE",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_straight_ne_sw_sidewalk_se.png",
@@ -266,8 +266,10 @@ export const ASSETS = {
     ]
   },
   "road_4lane_to_2lane_t_branch_ne_entry": {
-    "road_prop_approaches": {"east": "se"},
-    "label": "4↔2-lane T · branch NE · entry half",
+    "road_prop_approaches": {
+      "east": "se"
+    },
+    "label": "4\u21942-lane T \u00b7 branch NE \u00b7 entry half",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_ne_entry.png",
@@ -278,7 +280,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_to_2lane_t_branch_ne_far": {
-    "label": "4↔2-lane T · branch NE · far half",
+    "label": "4\u21942-lane T \u00b7 branch NE \u00b7 far half",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_ne_far.png",
@@ -290,7 +292,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_to_2lane_t_branch_nw_entry": {
-    "label": "4↔2-lane T · branch NW · entry half",
+    "label": "4\u21942-lane T \u00b7 branch NW \u00b7 entry half",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_nw_entry.png",
@@ -301,7 +303,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_to_2lane_t_branch_nw_far": {
-    "label": "4↔2-lane T · branch NW · far half",
+    "label": "4\u21942-lane T \u00b7 branch NW \u00b7 far half",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_nw_far.png",
@@ -313,7 +315,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_to_2lane_t_branch_se_entry": {
-    "label": "4↔2-lane T · branch SE · entry half",
+    "label": "4\u21942-lane T \u00b7 branch SE \u00b7 entry half",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_se_entry.png",
@@ -324,7 +326,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_to_2lane_t_branch_se_far": {
-    "label": "4↔2-lane T · branch SE · far half",
+    "label": "4\u21942-lane T \u00b7 branch SE \u00b7 far half",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_se_far.png",
@@ -336,7 +338,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_to_2lane_t_branch_sw_entry": {
-    "label": "4↔2-lane T · branch SW · entry half",
+    "label": "4\u21942-lane T \u00b7 branch SW \u00b7 entry half",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_sw_entry.png",
@@ -347,7 +349,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_to_2lane_t_branch_sw_far": {
-    "label": "4↔2-lane T · branch SW · far half",
+    "label": "4\u21942-lane T \u00b7 branch SW \u00b7 far half",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_to_2lane_t_branch_sw_far.png",
@@ -359,8 +361,10 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_entry_corner_ne_se": {
-    "road_prop_approaches": {"east": "se"},
-    "label": "4-lane junction · entry · corner NE/SE",
+    "road_prop_approaches": {
+      "east": "se"
+    },
+    "label": "4-lane junction \u00b7 entry \u00b7 corner NE/SE",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_entry_corner_ne_se.png",
@@ -378,7 +382,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_entry_corner_nw_ne": {
-    "label": "4-lane junction · entry · corner NW/NE",
+    "label": "4-lane junction \u00b7 entry \u00b7 corner NW/NE",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_entry_corner_nw_ne.png",
@@ -396,8 +400,10 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_entry_corner_se_sw": {
-    "road_prop_approaches": {"south": "sw"},
-    "label": "4-lane junction · entry · corner SE/SW",
+    "road_prop_approaches": {
+      "south": "sw"
+    },
+    "label": "4-lane junction \u00b7 entry \u00b7 corner SE/SW",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_entry_corner_se_sw.png",
@@ -415,7 +421,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_entry_corner_nw_sw": {
-    "label": "4-lane junction · entry · corner NW/SW",
+    "label": "4-lane junction \u00b7 entry \u00b7 corner NW/SW",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_entry_corner_nw_sw.png",
@@ -433,7 +439,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_far_sidewalk_sw_divider_se": {
-    "label": "4-lane junction · far · sidewalk SW · divider SE",
+    "label": "4-lane junction \u00b7 far \u00b7 sidewalk SW \u00b7 divider SE",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_sw_divider_se.png",
@@ -445,7 +451,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_far_sidewalk_sw_divider_nw": {
-    "label": "4-lane junction · far · sidewalk SW · divider NW",
+    "label": "4-lane junction \u00b7 far \u00b7 sidewalk SW \u00b7 divider NW",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_sw_divider_nw.png",
@@ -457,7 +463,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_far_sidewalk_se_divider_ne": {
-    "label": "4-lane junction · far · sidewalk SE · divider NE",
+    "label": "4-lane junction \u00b7 far \u00b7 sidewalk SE \u00b7 divider NE",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_se_divider_ne.png",
@@ -469,7 +475,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_far_sidewalk_se_divider_sw": {
-    "label": "4-lane junction · far · sidewalk SE · divider SW",
+    "label": "4-lane junction \u00b7 far \u00b7 sidewalk SE \u00b7 divider SW",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_se_divider_sw.png",
@@ -481,7 +487,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_far_sidewalk_nw_divider_ne": {
-    "label": "4-lane junction · far · sidewalk NW · divider NE",
+    "label": "4-lane junction \u00b7 far \u00b7 sidewalk NW \u00b7 divider NE",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_nw_divider_ne.png",
@@ -493,7 +499,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_far_sidewalk_nw_divider_sw": {
-    "label": "4-lane junction · far · sidewalk NW · divider SW",
+    "label": "4-lane junction \u00b7 far \u00b7 sidewalk NW \u00b7 divider SW",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_nw_divider_sw.png",
@@ -505,7 +511,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_far_sidewalk_ne_divider_se": {
-    "label": "4-lane junction · far · sidewalk NE · divider SE",
+    "label": "4-lane junction \u00b7 far \u00b7 sidewalk NE \u00b7 divider SE",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_ne_divider_se.png",
@@ -517,7 +523,7 @@ export const ASSETS = {
     ]
   },
   "road_4lane_junction_far_sidewalk_ne_divider_nw": {
-    "label": "4-lane junction · far · sidewalk NE · divider NW",
+    "label": "4-lane junction \u00b7 far \u00b7 sidewalk NE \u00b7 divider NW",
     "category": "ground/roads/4lane",
     "layer": "ground",
     "file": "ground/roads/4lane/road_4lane_junction_far_sidewalk_ne_divider_nw.png",
@@ -529,7 +535,7 @@ export const ASSETS = {
     ]
   },
   "crosswalk_2lane_nw_se": {
-    "label": "2-lane crossing · traffic NW–SE",
+    "label": "2-lane crossing \u00b7 traffic NW\u2013SE",
     "category": "ground/markings/2lane",
     "layer": "overlay",
     "file": "ground/markings/2lane/crosswalk_2lane_nw_se.png",
@@ -540,7 +546,7 @@ export const ASSETS = {
     }
   },
   "crosswalk_2lane_ne_sw": {
-    "label": "2-lane crossing · traffic NE–SW",
+    "label": "2-lane crossing \u00b7 traffic NE\u2013SW",
     "category": "ground/markings/2lane",
     "layer": "overlay",
     "file": "ground/markings/2lane/crosswalk_2lane_ne_sw.png",
@@ -551,7 +557,7 @@ export const ASSETS = {
     }
   },
   "crosswalk_4lane_nw_se_half_ne": {
-    "label": "4-lane crossing half · traffic NW–SE · NE half",
+    "label": "4-lane crossing half \u00b7 traffic NW\u2013SE \u00b7 NE half",
     "category": "ground/markings/4lane",
     "layer": "overlay",
     "file": "ground/markings/4lane/crosswalk_4lane_nw_se_half_ne.png",
@@ -562,7 +568,7 @@ export const ASSETS = {
     }
   },
   "crosswalk_4lane_nw_se_half_sw": {
-    "label": "4-lane crossing half · traffic NW–SE · SW half",
+    "label": "4-lane crossing half \u00b7 traffic NW\u2013SE \u00b7 SW half",
     "category": "ground/markings/4lane",
     "layer": "overlay",
     "file": "ground/markings/4lane/crosswalk_4lane_nw_se_half_sw.png",
@@ -573,7 +579,7 @@ export const ASSETS = {
     }
   },
   "crosswalk_4lane_ne_sw_half_nw": {
-    "label": "4-lane crossing half · traffic NE–SW · NW half",
+    "label": "4-lane crossing half \u00b7 traffic NE\u2013SW \u00b7 NW half",
     "category": "ground/markings/4lane",
     "layer": "overlay",
     "file": "ground/markings/4lane/crosswalk_4lane_ne_sw_half_nw.png",
@@ -584,7 +590,7 @@ export const ASSETS = {
     }
   },
   "crosswalk_4lane_ne_sw_half_se": {
-    "label": "4-lane crossing half · traffic NE–SW · SE half",
+    "label": "4-lane crossing half \u00b7 traffic NE\u2013SW \u00b7 SE half",
     "category": "ground/markings/4lane",
     "layer": "overlay",
     "file": "ground/markings/4lane/crosswalk_4lane_ne_sw_half_se.png",
@@ -593,6 +599,182 @@ export const ASSETS = {
       "default_bleed": "ground/markings/4lane/crosswalk_4lane_ne_sw_half_se.png",
       "logical": "ground/markings/4lane/crosswalk_4lane_ne_sw_half_se_logical.png"
     }
+  },
+  "road_2lane_t_4lane_branch_nw_approach_ne": {
+    "label": "2-lane T \u00b7 4-lane branch NW \u00b7 approach NE",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_nw_approach_ne.png",
+    "open_edges": [
+      "nw",
+      "se",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_nw_street_ne": {
+    "label": "2-lane T \u00b7 4-lane branch NW \u00b7 street NE",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_nw_street_ne.png",
+    "open_edges": [
+      "nw",
+      "ne",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_nw_approach_sw": {
+    "label": "2-lane T \u00b7 4-lane branch NW \u00b7 approach SW",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_nw_approach_sw.png",
+    "open_edges": [
+      "nw",
+      "se",
+      "ne"
+    ]
+  },
+  "road_2lane_t_4lane_branch_nw_street_sw": {
+    "label": "2-lane T \u00b7 4-lane branch NW \u00b7 street SW",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_nw_street_sw.png",
+    "open_edges": [
+      "nw",
+      "ne",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_ne_approach_nw": {
+    "label": "2-lane T \u00b7 4-lane branch NE \u00b7 approach NW",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_ne_approach_nw.png",
+    "open_edges": [
+      "se",
+      "ne",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_ne_approach_se": {
+    "label": "2-lane T \u00b7 4-lane branch NE \u00b7 approach SE",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_ne_approach_se.png",
+    "open_edges": [
+      "nw",
+      "ne",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_ne_street_nw": {
+    "label": "2-lane T \u00b7 4-lane branch NE \u00b7 street NW",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_ne_street_nw.png",
+    "open_edges": [
+      "nw",
+      "se",
+      "ne"
+    ]
+  },
+  "road_2lane_t_4lane_branch_ne_street_se": {
+    "label": "2-lane T \u00b7 4-lane branch NE \u00b7 street SE",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_ne_street_se.png",
+    "open_edges": [
+      "nw",
+      "se",
+      "ne"
+    ]
+  },
+  "road_2lane_t_4lane_branch_se_street_ne": {
+    "label": "2-lane T \u00b7 4-lane branch SE \u00b7 street NE",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_se_street_ne.png",
+    "open_edges": [
+      "se",
+      "ne",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_se_approach_ne": {
+    "label": "2-lane T \u00b7 4-lane branch SE \u00b7 approach NE",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_se_approach_ne.png",
+    "open_edges": [
+      "nw",
+      "se",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_se_street_sw": {
+    "label": "2-lane T \u00b7 4-lane branch SE \u00b7 street SW",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_se_street_sw.png",
+    "open_edges": [
+      "se",
+      "ne",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_se_approach_sw": {
+    "label": "2-lane T \u00b7 4-lane branch SE \u00b7 approach SW",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_se_approach_sw.png",
+    "open_edges": [
+      "nw",
+      "se",
+      "ne"
+    ]
+  },
+  "road_2lane_t_4lane_branch_sw_street_nw": {
+    "label": "2-lane T \u00b7 4-lane branch SW \u00b7 street NW",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_sw_street_nw.png",
+    "open_edges": [
+      "nw",
+      "se",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_sw_street_se": {
+    "label": "2-lane T \u00b7 4-lane branch SW \u00b7 street SE",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_sw_street_se.png",
+    "open_edges": [
+      "nw",
+      "se",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_sw_approach_nw": {
+    "label": "2-lane T \u00b7 4-lane branch SW \u00b7 approach NW",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_sw_approach_nw.png",
+    "open_edges": [
+      "se",
+      "ne",
+      "sw"
+    ]
+  },
+  "road_2lane_t_4lane_branch_sw_approach_se": {
+    "label": "2-lane T \u00b7 4-lane branch SW \u00b7 approach SE",
+    "category": "ground/roads/2lane",
+    "layer": "ground",
+    "file": "ground/roads/2lane/road_2lane_t_4lane_branch_sw_approach_se.png",
+    "open_edges": [
+      "nw",
+      "ne",
+      "sw"
+    ]
   }
 };
 export const LEGACY_KEYS = {
